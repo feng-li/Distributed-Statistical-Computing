@@ -14,15 +14,15 @@ Distributed Statistical Computing (大数据分布式计算——教学讲义以
 Course Homepage （课程主页）
 ===========================
 
-    [https://feng.li/distcomp/](https://feng.li/distcomp/)
+   [https://feng.li/distcomp/](https://feng.li/distcomp/)
 
 Contents (目录)
 ========
 
-This is the repository for the course and book: Distributed Statistical Computing (大数据分布式计算) developed by Feng Li.
+This is the repository for the course and book: Distributed Statistical Computing (大数据分布式计算) developed by Feng Li. It includes
 
-- It includes teaching slides (with Jupyter Notebook format);
+- teaching slides (with Jupyter Notebook format);
 
-- Demo code for the course;
+- demo code for the course;
 
 - and statistical cases in markdown and tex format.
