@@ -1,0 +1,7 @@
+John Doe100000.0Mary SmithTodd JonesFederal Taxes.2State Taxes.05Insurance.11 Michigan Ave.ChicagoIL60600
+Mary Smith80000.0Bill KingFederal Taxes.2State Taxes.05Insurance.1100 Ontario St.ChicagoIL60601
+Todd Jones70000.0Federal Taxes.15State Taxes.03Insurance.1200 Chicago Ave.Oak ParkIL60700
+Bill King60000.0Federal Taxes.15State Taxes.03Insurance.1300 Obscure Dr.ObscuriaIL60100
+Boss Man200000.0John DoeFred FinanceFederal Taxes.3State Taxes.07Insurance.051 Pretentious Drive.ChicagoIL60500
+Fred Finance150000.0Stacy AccountantFederal Taxes.3State Taxes.07Insurance.052 Pretentious Drive.ChicagoIL60500
+Stacy Accountant60000.0Federal Taxes.15State Taxes.03Insurance.1300 Main St.NapervilleIL60563
