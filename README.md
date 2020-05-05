@@ -24,7 +24,7 @@
 
 ### Teaching slides and demo code (with Jupyter Notebook format)
 
-Requirements to run the notebook interactivly
+Requirements to run the notebook interactively
 
 - Python (>= 3.6.0)
   - [`findspark`](https://github.com/minrk/findspark) (invoke Spark from Python Session)
