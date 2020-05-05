@@ -1,18 +1,11 @@
----
-title: Hadoop and Spark Tutorial for Statisticians
----
+# Hadoop and Spark Tutorial for Statisticians
 
-This tutorial is written with Hadoop 2.7.1.
 
-[View in PDF](./Hadoop-Guide.pdf)
+## Install Hadoop
 
-Install Hadoop
-==============
+### Prerequisites
 
-Prerequisites
--------------
-
-### SSH
+#### SSH
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ sudo apt-get install openssh-server
@@ -20,20 +13,20 @@ fli@carbon:~$ ssh-keygen -t rsa
 fli@carbon:~$ cat ~/.ssh/id_rsa.pub >> authorized_keys
 ```
 
-### JDK
+#### JDK
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ sudo apt-get install openjdk-7-jdk
 fli@carbon:~$ java -version
 ```
 
-### Get Hadoop
+#### Get Hadoop
 
 Visit [Hadoop homepage](http://hadoop.apache.org/releases.html) to
 download the latest version of Hadoop for Linux.
 
-Configuring Hadoop
-------------------
+## Configuring Hadoop
+
 
 ### Core configuration files
 
@@ -64,18 +57,16 @@ export JAVA_HOME=/usr/lib/jvm/default-java/ #location to Java
 -   Pseudo mode
 -   Cluster mode
 
-Start and stop Hadoop
-=====================
+## Start and stop Hadoop
 
-Format HDFS
------------
+### Format HDFS
 
 ``` {.bash org-language="sh"}
 fli@carbon:~/hadoop/bin$ hdfs namenode -format
 ```
 
-Start/Stop HDFS
----------------
+### Start/Stop HDFS
+
 
 ``` {.bash org-language="sh"}
 fli@carbon:~/hadoop/sbin$ start-dfs.sh
@@ -84,8 +75,8 @@ fli@carbon:~/hadoop/sbin$ start-dfs.sh
 Namenode information then is accessible from <http://localhost:50070> .
 However `sbin/stop-dfs.sh` will stop HDFS.
 
-Start/Stop MapReduce
---------------------
+###　Start/Stop MapReduce
+
 
 ``` {.bash org-language="sh"}
 fli@carbon:~/hadoop/sbin$ start-yarn.sh
@@ -95,8 +86,8 @@ Hadoop administration page then is accessible from
 <http://localhost:8088/>. However `sbin/stop-yarn.sh` will stop
 MapReduce.
 
-Basic Hadoop shell commands
----------------------------
+##　Basic Hadoop shell commands
+
 
 ### Create a directory in HDFS
 
@@ -212,11 +203,9 @@ Use your web browser to open the file
 `hadoop/share/doc/hadoop/index.html` which will guide you to the
 document entry for current Hadoop version.
 
-Hadoop Streaming
-================
+## Hadoop Streaming
 
-A very simple word count example
---------------------------------
+### A very simple word count example
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ hadoop/bin/hadoop jar \
@@ -227,10 +216,10 @@ fli@carbon:~$ hadoop/bin/hadoop jar \
               -reducer "/usr/bin/wc" \
 ```
 
-Hadoop Streaming with R
------------------------
+### Hadoop Streaming with R
 
-### Write an R script that accepts standard input and output.
+
+#### Write an R script that accepts standard input and output.
 
 See such example `stock_day_avg.R`
 
@@ -304,7 +293,7 @@ YHOO,2001-01-02,30.31,30.37,27.50,28.19,21939200,14.10
 YHOO,2000-01-03,442.92,477.00,429.50,475.00,38469600,118.75
 ```
 
-### Your script has to be executable
+#### Your script has to be executable
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ chmod +x stock_day_avg.R
@@ -313,19 +302,19 @@ fli@carbon:~$ chmod +x stock_day_avg.R
 And very importantly, you have to have your R installed on every worker
 node and the necessary R packages should be installed as well.
 
-### Quick test your file and mapper function
+#### Quick test your file and mapper function
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ cat stocks.txt  | stock_day_avg.R
 ```
 
-### Upload the data file to HDFS
+#### Upload the data file to HDFS
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ hadoop/bin/hadoop fs -put stocks.txt /
 ```
 
-### Submitting tasks
+#### Submitting tasks
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ hadoop/bin/hadoop \
@@ -336,7 +325,7 @@ fli@carbon:~$ hadoop/bin/hadoop \
               -mapper "stock_day_avg.R"
 ```
 
-### View your result
+#### View your result
 
 You can either view your result from the web interface or use the
 following HDFS command
@@ -345,15 +334,15 @@ following HDFS command
 fli@carbon:~$ hadoop/bin/hdfs dfs -cat /user/fli/output/part-00000
 ```
 
-Hadoop Streaming Documentation
-------------------------------
+### Hadoop Streaming Documentation
+
 
 The complete Hadoop Streaming Documentation can be found from Hadoop
 Installation directory
 `share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-core/HadoopStreaming.html`
 
-Hadoop with Java API
-====================
+## Hadoop with Java API
+
 
 We have the following Jave WordCount version MapReduce program that
 counts the number of occurrences of each word in a given input set. This
@@ -481,19 +470,18 @@ output at HDFS
 fli@carbon:~/hadoop$ ~/hadoop/bin/hadoop fs -cat WordCount/output/*
 ```
 
-Statistical Modeling with Hadoop
-================================
+## Statistical Modeling with Hadoop
 
-Linear Regression Models.
--------------------------
+
+### Linear Regression Models.
+
 
 The core algorithm for linear regression modeling is to code up a
 mapreduce procedure for X\'Y and X\'X. One can decompose this into many
 submatrix multiplications and sum them over in the end. See the lecture
 notes for details.
 
-Logistic Regression Models
---------------------------
+### Logistic Regression Models
 
 You will need to code up your own algorithm for estimating the
 coefficients in the model. You can use the RHadoop API or Mahout.
@@ -504,27 +492,22 @@ RHadoop is a collection of five R packages that allow users to manage
 and analyze data with Hadoop. Examples and helps can be found from
 <https://github.com/RevolutionAnalytics/RHadoop/wiki>
 
-### Mahout
-
-See next section.
 
 ### Via approximations.
 
 See lecture notes.
 
-Statistical Learning with Mahout
-================================
+## Statistical Learning with Mahout
 
-Quick Install Mahout
---------------------
+### Quick Install Mahout
 
-### Use the binary release
+#### Use the binary release
 
 Please visit <https://mahout.apache.org/> to download the latest binary
 version (currently 0.9 is the release version) of Mahout. But remember
 that this version does not work well with Hadoop 2.5.2.
 
-### Compile your mahout that matches your hadoop
+#### Compile your mahout that matches your hadoop
 
 Instead of using the binary version, one may need to compile mahout to
 match the system hadoop (version 2.x). NOTE: If you don\'t have the
@@ -553,8 +536,8 @@ fli@carbon:~/mahout$ mvn -Dhadoop2.version=2.5.2 -DskipTests=true
 clean install
 ```
 
-Set up the necessary environment variables
-------------------------------------------
+#### Set up the necessary environment variables
+
 
 Make sure the following environment variables are set properly
 
@@ -639,8 +622,8 @@ Valid program names are:
   viterbi: : Viterbi decoding of hidden states from given output states sequence
 ```
 
-Run a Mahout Job
-----------------
+#### Run a Mahout Job
+
 
 -   Let Hadoop/HDFS up and run
 -   Upload data to HDFS
@@ -669,8 +652,8 @@ The output will be at your `output` directory under your HDFS user
 directory. For more information about this example, please visit
 <https://mahout.apache.org/users/clustering/canopy-clustering.html>
 
-Mahout build-in examples
-------------------------
+#### Mahout build-in examples
+
 
 There are a lot ready-to-use examples at `mahout/examples/bin`
 directory. Just run e.g.
@@ -679,13 +662,12 @@ directory. Just run e.g.
 fli@carbon:~ mahout/examples/bin/classify-20newsgroups.sh
 ```
 
-Classification with random forests
-----------------------------------
+#### Classification with random forests
 
 We will run the random forests algorithm with Mahout 1.0 and Hadoop
 2.5.2.
 
-### Upload the data to HDFS\'s directory
+#### Upload the data to HDFS\'s directory
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ ~/hadoop/bin/hadoop fs -put KDD* testdata
@@ -695,7 +677,7 @@ Found 2 items
 -rw-r--r--   1 fli supergroup   18742306 2014-12-14 17:32 testdata/KDDTrain+.arff
 ```
 
-### Generate the dataset description
+#### Generate the dataset description
 
 ``` {.bash org-language="sh"}
 fli@carbon:~$ ~/hadoop/bin/hadoop jar \
@@ -718,7 +700,7 @@ directory. Check it with
 fli@carbon:~$ ~/hadoop/bin/hadoop fs -cat testdata/*.info
 ```
 
-### Build the model
+#### Build the model
 
 We will try to build 100 trees (-t argument) using the partial
 implementation (-p). Each tree is built using 5 random selected
@@ -744,7 +726,7 @@ fli@carbon:~$ ~/hadoop/bin/hadoop jar \
 A directory named `nsl-forest` will be generated that contains all the
 model parameters.
 
-### Use the model to classify new data
+#### Use the model to classify new data
 
 Now we can compute the predictions of \"KDDTest+.arff\" dataset (-i
 argument) using the same data descriptor generated for the training
@@ -799,13 +781,11 @@ If you have any question concerning with random forests, read Chapter 15
 of [The Elements of Statistical
 Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/)
 
-Introduction to Spark
-=====================
+## Introduction to Spark
 
-Spark Shell
------------
+# Spark Shell
 
-### Interactive Analysis with the Spark Shell
+## Interactive Analysis with the Spark Shell
 
 -   Spark\'s shell provides a simple way to learn the API, as well as a
     powerful tool to analyze data interactively. It is available in
@@ -878,14 +858,14 @@ u'# Apache Spark'
 15
 ```
 
-Standalone Applications
------------------------
+## Standalone Applications
+
 
 -   Assume we like to write a program that just counts the number of
     lines containing \'a\' and the number containing \'b\' in the Spark
     README.
 
-### The Python version
+## The Python version
 
 ``` {.bash org-language="sh"}
 """SimpleApp.py"""
@@ -901,7 +881,7 @@ numBs = logData.filter(lambda s: 'b' in s).count()
 print "Lines with a: %i, lines with b: %i" % (numAs, numBs)
 ```
 
-### The Java version
+## The Java version
 
 ``` {.java}
 /* SimpleApp.java */
@@ -930,7 +910,7 @@ public class SimpleApp {
 }
 ```
 
-### The Scala version
+## The Scala version
 
 ``` {.java}
 /* SimpleApp.scala */
@@ -951,10 +931,10 @@ object SimpleApp {
 }
 ```
 
-Submitting Applications to Spark
---------------------------------
+### Submitting Applications to Spark
 
-### Bundling Your Application\'s Dependencies
+
+#### Bundling Your Application\'s Dependencies
 
 -   If your code depends on other projects, you will need to package
     them alongside your application in order to distribute the code to a
@@ -974,7 +954,7 @@ Submitting Applications to Spark
 
 `bin/spark-submit` script.
 
-### Run Your Application
+#### Run Your Application
 
 -   Run application locally on 8 cores
 
