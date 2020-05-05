@@ -16,34 +16,35 @@
 
 ## Books (配套教材)
 
-### Distributed Statistical Computing for Big Data and Case Studies (大数据分布式计算与案例) ISBN：9787300230276
+- Distributed Statistical Computing for Big Data and Case Studies (大数据分布式计算与案例) ISBN：9787300230276
+    - Available at [JD.COM](https://item.jd.com/11990410.html)
 
-- Available at [JD.COM](https://item.jd.com/11990410.html)
-
-### New version [In Preparation](https://github.com/feng-li/distcompbook)
+- New version [In Preparation](https://github.com/feng-li/distcompbook)
 
 ## Contents (目录)
 ========
 
-### Teaching slides (with Jupyter Notebook format)
+### Teaching slides and demo code (with Jupyter Notebook format)
 
 Requirements to run the notebook interactivly
 
 - Python (>= 3.6.0)
-  - findspark
+  - [`findspark`](https://github.com/minrk/findspark) (invoke Spark from Python Session)
+  - `numpy`, `scipy`, `pandas`
 
 - Hadoop (>= 2.7.0)
-- Hive   ()
+- Hive   (>= 2.3.3)
 - Spark  (>= 2.3.1)
 
 - Jupyter Notebook (>= 5.0)
 
-    - RISE (for jupyter slides)
-    - Bash Kernel (for Linux and Hadoop, Hive, Spark batch mode)
-    - Python 3 Kernel (for PySpark)
-    - HiveQL Kernel (for Hive)
-    - Spark Toree (for Spark Scala)
+    - [RISE](https://github.com/damianavila/RISE) (for Jupyter slides)
+        
+        Use `Alt+R` to enter sildeshow mode
+        
+    - [Bash Kernel](https://github.com/takluyver/bash_kernel) (for Linux and Hadoop, Hive, Spark batch mode)
+    - [IPython kernel for Python 3](https://ipython.readthedocs.io/en/latest/install/kernel_install.html) (for Interactive PySpark Sessions)
+    - [HiveQL Kernel](https://github.com/EDS-APHP/HiveQLKernel) (for Interactive Hive Sessions)
+    - [Spark Toree](https://toree.apache.org/docs/current/user/quick-start/) (for Interactive Spark Scala Sessions)
 
-### demo code for the course
-
-### Statistical cases in markdown and tex format  (out dated).
+### [Statistical cases](https://github.com/feng-li/Distributed-Statistical-Computing/tree/master/book-examples) in markdown and tex format  (out dated).
