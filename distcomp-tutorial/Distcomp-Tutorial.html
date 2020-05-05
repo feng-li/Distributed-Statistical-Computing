@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Hadoop Tutorial for Statisticians</title>
+<!-- 2014-12-17 Wed 18:33 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Feng Li" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Hadoop Tutorial for Statisticians</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Install Hadoop</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Pre-requests</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. SSH</a></li>
+<li><a href="#sec-1-1-2">1.1.2. JDK</a></li>
+<li><a href="#sec-1-1-3">1.1.3. Get Hadoop</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. Configuring Hadoop</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. Core configuration files</a></li>
+<li><a href="#sec-1-2-2">1.2.2. Important environment variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Start and stop Hadoop</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Format HDFS</a></li>
+<li><a href="#sec-2-2">2.2. Start/Stop HDFS</a></li>
+<li><a href="#sec-2-3">2.3. Start/Stop MapReduce</a></li>
+<li><a href="#sec-2-4">2.4. Basic Hadoop shell commands</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1. Create a directory in HDFS</a></li>
+<li><a href="#sec-2-4-2">2.4.2. Upload a local file to HDFS</a></li>
+<li><a href="#sec-2-4-3">2.4.3. Check files in HDFS</a></li>
+<li><a href="#sec-2-4-4">2.4.4. Hadoop task managements</a></li>
+<li><a href="#sec-2-4-5">2.4.5. Getting help from from Hadoop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Hadoop Streaming</a>
+<ul>
+<li><a href="#sec-3-1">3.1. A very simple word count example</a></li>
+<li><a href="#sec-3-2">3.2. Hadoop Streaming with R</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Write an R script that accepts standard input and output.</a></li>
+<li><a href="#sec-3-2-2">3.2.2. Your script has to be executable</a></li>
+<li><a href="#sec-3-2-3">3.2.3. Quick test your file and mapper function</a></li>
+<li><a href="#sec-3-2-4">3.2.4. Upload the data file to HDFS</a></li>
+<li><a href="#sec-3-2-5">3.2.5. Submitting tasks</a></li>
+<li><a href="#sec-3-2-6">3.2.6. View your result</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">3.3. Hadoop Streaming Documentation</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Hadoop with Java API</a></li>
+<li><a href="#sec-5">5. Statistical Modeling with Hadoop</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Linear Regression Models.</a></li>
+<li><a href="#sec-5-2">5.2. Logistic Regression Models</a>
+<ul>
+<li><a href="#sec-5-2-1">5.2.1. RHadoop</a></li>
+<li><a href="#sec-5-2-2">5.2.2. Mahout</a></li>
+<li><a href="#sec-5-2-3">5.2.3. Via approximations.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Statistical Learning with Mahout</a>
+<ul>
+<li><a href="#sec-6-1">6.1. Quick Install Mahout</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. Use the binary release</a></li>
+<li><a href="#sec-6-1-2">6.1.2. Compile your mahout that matches your hadoop</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">6.2. Set up the necessary environment variables</a></li>
+<li><a href="#sec-6-3">6.3. Run a Mahout Job</a></li>
+<li><a href="#sec-6-4">6.4. Mahout build-in examples</a></li>
+<li><a href="#sec-6-5">6.5. Classification with random forests</a>
+<ul>
+<li><a href="#sec-6-5-1">6.5.1. Upload the data to HDFS's directory</a></li>
+<li><a href="#sec-6-5-2">6.5.2. Generate the dataset description</a></li>
+<li><a href="#sec-6-5-3">6.5.3. Build the model</a></li>
+<li><a href="#sec-6-5-4">6.5.4. Use the model to classify new data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-7">7. Introduction to Spark</a>
+<ul>
+<li><a href="#sec-7-1">7.1. Spark Shell</a>
+<ul>
+<li><a href="#sec-7-1-1">7.1.1. Interactive Analysis with the Spark Shell</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2">7.2. Standalone Applications</a>
+<ul>
+<li><a href="#sec-7-2-1">7.2.1. The Python version</a></li>
+<li><a href="#sec-7-2-2">7.2.2. The Java version</a></li>
+<li><a href="#sec-7-2-3">7.2.3. The Scala version</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-3">7.3. Submitting Applications to Spark</a>
+<ul>
+<li><a href="#sec-7-3-1">7.3.1. Bundling Your Application's Dependencies</a></li>
+<li><a href="#sec-7-3-2">7.3.2. Run Your Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This tutorial is written with Hadoop 2.5.2, and Mahout 1.0-SNAPSHOT.
+</p>
+
+<p>
+<a href="./Hadoop-Guide.pdf">View in PDF</a>
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Install Hadoop</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Pre-requests</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> SSH</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ sudo apt-get install openssh-server
+fli@carbon:~$ ssh-keygen -t rsa
+fli@carbon:~$ cat ~/.ssh/id_rsa.pub &gt;&gt; authorized_keys
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> JDK</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ sudo apt-get install openjdk-7-jdk
+fli@carbon:~$ java -version
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Get Hadoop</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+Visit <a href="http://hadoop.apache.org/releases.html">Hadoop homepage</a>
+to download the latest version of Hadoop for Linux.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Configuring Hadoop</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Core configuration files</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+The configuration files for Hadoop is at <code>etc/hadoop</code>. You have to set
+the at least the four core configuration files in order to start
+Hadoop properly.
+</p>
+
+<pre class="example">
+mapred-site.xml
+hdfs-site.xml
+core-site.xml
+hadoop-env.sh
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Important environment variables</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+You have to set the following environment variables by either editing
+your Hadoop <code>etc/hadoop/hadoop-env.sh</code> file or editing your <code>~/.bashrc</code> file
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_HOME</span>=~/hadoop <span style="color: #0000ff;"># </span><span style="color: #0000ff;">This is your Hadoop installation directory</span>
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">JAVA_HOME</span>=/usr/lib/jvm/default-java/ <span style="color: #0000ff;">#</span><span style="color: #0000ff;">location to Java</span>
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_CONF_DIR</span>=$<span style="color: #a0522d;">HADOOP_HOME</span>/lib/native
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_OPTS</span>=<span style="color: #006400;">"-Djava.library.path=$HADOOP_HOME/lib"</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Single node mode
+</li>
+<li>Pseudo mode
+</li>
+<li>Cluster mode
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Start and stop Hadoop</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Format HDFS</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop/bin$ hdfs namenode -format
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Start/Stop HDFS</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop/sbin$ start-dfs.sh
+</pre>
+</div>
+
+<p>
+Namenode information then is accessible from
+<a href="http://localhost:50070">http://localhost:50070</a> . However <code>sbin/stop-dfs.sh</code> will stop HDFS.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Start/Stop MapReduce</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop/sbin$ start-yarn.sh
+</pre>
+</div>
+
+<p>
+Hadoop administration page then is accessible from
+<a href="http://localhost:8088/">http://localhost:8088/</a>. However <code>sbin/stop-yarn.sh</code> will stop MapReduce.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Basic Hadoop shell commands</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> Create a directory in HDFS</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<pre class="example">
+fli@carbon:~/hadoop/bin$ hadoop fs -mkdir /test
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> Upload a local file to HDFS</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<pre class="example">
+fli@carbon:~/hadoop/bin$ hadoop fs -put ~/StudentNameList.xls /test
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> Check files in HDFS</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<pre class="example">
+fli@carbon:~/hadoop/bin$ hadoop fs -ls /test
+</pre>
+
+<p>
+Type <code>hadoop fs</code> to check other basic HDFS data operation commands
+</p>
+
+<pre class="example">
+fli@carbon:~/hadoop/bin$ hadoop fs
+Usage: hadoop fs [generic options]
+	[-appendToFile &lt;localsrc&gt; ... &lt;dst&gt;]
+	[-cat [-ignoreCrc] &lt;src&gt; ...]
+	[-checksum &lt;src&gt; ...]
+	[-chgrp [-R] GROUP PATH...]
+	[-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]
+	[-chown [-R] [OWNER][:[GROUP]] PATH...]
+	[-copyFromLocal [-f] [-p] &lt;localsrc&gt; ... &lt;dst&gt;]
+	[-copyToLocal [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]
+	[-count [-q] &lt;path&gt; ...]
+	[-cp [-f] [-p | -p[topax]] &lt;src&gt; ... &lt;dst&gt;]
+	[-createSnapshot &lt;snapshotDir&gt; [&lt;snapshotName&gt;]]
+	[-deleteSnapshot &lt;snapshotDir&gt; &lt;snapshotName&gt;]
+	[-df [-h] [&lt;path&gt; ...]]
+	[-du [-s] [-h] &lt;path&gt; ...]
+	[-expunge]
+	[-get [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]
+	[-getfacl [-R] &lt;path&gt;]
+	[-getfattr [-R] {-n name | -d} [-e en] &lt;path&gt;]
+	[-getmerge [-nl] &lt;src&gt; &lt;localdst&gt;]
+	[-help [cmd ...]]
+	[-ls [-d] [-h] [-R] [&lt;path&gt; ...]]
+	[-mkdir [-p] &lt;path&gt; ...]
+	[-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]
+	[-moveToLocal &lt;src&gt; &lt;localdst&gt;]
+	[-mv &lt;src&gt; ... &lt;dst&gt;]
+	[-put [-f] [-p] &lt;localsrc&gt; ... &lt;dst&gt;]
+	[-renameSnapshot &lt;snapshotDir&gt; &lt;oldName&gt; &lt;newName&gt;]
+	[-rm [-f] [-r|-R] [-skipTrash] &lt;src&gt; ...]
+	[-rmdir [--ignore-fail-on-non-empty] &lt;dir&gt; ...]
+	[-setfacl [-R] [{-b|-k} {-m|-x &lt;acl_spec&gt;} &lt;path&gt;]|[--set &lt;acl_spec&gt; &lt;path&gt;]]
+	[-setfattr {-n name [-v value] | -x name} &lt;path&gt;]
+	[-setrep [-R] [-w] &lt;rep&gt; &lt;path&gt; ...]
+	[-stat [format] &lt;path&gt; ...]
+	[-tail [-f] &lt;file&gt;]
+	[-test -[defsz] &lt;path&gt;]
+	[-text [-ignoreCrc] &lt;src&gt; ...]
+	[-touchz &lt;path&gt; ...]
+	[-usage [cmd ...]]
+
+Generic options supported are
+-conf &lt;configuration file&gt;     specify an application configuration file
+-D &lt;property=value&gt;            use value for given property
+-fs &lt;local|namenode:port&gt;      specify a namenode
+-jt &lt;local|jobtracker:port&gt;    specify a job tracker
+-files &lt;comma separated list of files&gt;    specify comma separated files to be copied to the map reduce cluster
+-libjars &lt;comma separated list of jars&gt;    specify comma separated jar files to include in the classpath.
+-archives &lt;comma separated list of archives&gt;    specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+bin/hadoop command [genericOptions] [commandOptions]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-4" class="outline-4">
+<h4 id="sec-2-4-4"><span class="section-number-4">2.4.4</span> Hadoop task managements</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<pre class="example">
+fli@carbon:~/hadoop/bin$ mapred job
+Usage: CLI &lt;command&gt; &lt;args&gt;
+	[-submit &lt;job-file&gt;]
+	[-status &lt;job-id&gt;]
+	[-counter &lt;job-id&gt; &lt;group-name&gt; &lt;counter-name&gt;]
+	[-kill &lt;job-id&gt;]
+	[-set-priority &lt;job-id&gt; &lt;priority&gt;]. Valid values for priorities are: VERY_HIGH HIGH NORMAL LOW VERY_LOW
+	[-events &lt;job-id&gt; &lt;from-event-#&gt; &lt;#-of-events&gt;]
+	[-history &lt;jobHistoryFile&gt;]
+	[-list [all]]
+	[-list-active-trackers]
+	[-list-blacklisted-trackers]
+	[-list-attempt-ids &lt;job-id&gt; &lt;task-type&gt; &lt;task-state&gt;]. Valid values for &lt;task-type&gt; are REDUCE MAP. Valid values for &lt;task-state&gt; are running, completed
+	[-kill-task &lt;task-attempt-id&gt;]
+	[-fail-task &lt;task-attempt-id&gt;]
+	[-logs &lt;job-id&gt; &lt;task-attempt-id&gt;]
+
+Generic options supported are
+-conf &lt;configuration file&gt;     specify an application configuration file
+-D &lt;property=value&gt;            use value for given property
+-fs &lt;local|namenode:port&gt;      specify a namenode
+-jt &lt;local|jobtracker:port&gt;    specify a job tracker
+-files &lt;comma separated list of files&gt;    specify comma separated files to be copied to the map reduce cluster
+-libjars &lt;comma separated list of jars&gt;    specify comma separated jar files to include in the classpath.
+-archives &lt;comma separated list of archives&gt;    specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+bin/hadoop command [genericOptions] [commandOptions]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-5" class="outline-4">
+<h4 id="sec-2-4-5"><span class="section-number-4">2.4.5</span> Getting help from from Hadoop</h4>
+<div class="outline-text-4" id="text-2-4-5">
+<p>
+Use your web browser to open the file
+<code>hadoop/share/doc/hadoop/index.html</code> which will guide you to the document
+entry for current Hadoop version.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Hadoop Streaming</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> A very simple word count example</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ hadoop/bin/hadoop jar <span style="color: #006400;">\</span>
+              ~/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.5.2.jar <span style="color: #006400;">\</span>
+              -input /stocks.txt <span style="color: #006400;">\</span>
+              -output wcoutfile <span style="color: #006400;">\</span>
+              -mapper <span style="color: #006400;">"/bin/cat"</span> <span style="color: #006400;">\</span>
+              -reducer <span style="color: #006400;">"/usr/bin/wc"</span> <span style="color: #006400;">\</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Hadoop Streaming with R</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Write an R script that accepts standard input and output.</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+See such example <code>stock_day_avg.R</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R"><span style="color: #0000ff;">#</span><span style="color: #0000ff;">! /usr/bin/env Rscript</span>
+
+sink(<span style="color: #006400;">"/dev/null"</span>)
+
+input <span style="color: #008b8b;">&lt;-</span> file(<span style="color: #006400;">"stdin"</span>, <span style="color: #006400;">"r"</span>)
+<span style="color: #ff00ff;">while</span>(length(currentLine <span style="color: #008b8b;">&lt;-</span> readLines(input, n=1, warn=<span style="color: #228b22;">FALSE</span>)) &gt; 0)
+{
+    fields <span style="color: #008b8b;">&lt;-</span> unlist(strsplit(currentLine, <span style="color: #006400;">","</span>))
+    lowHigh <span style="color: #008b8b;">&lt;-</span> c(as.double(fields[3]), as.double(fields[6]))
+    stock_mean <span style="color: #008b8b;">&lt;-</span> mean(lowHigh)
+    sink()
+    cat(fields[1], fields[2], stock_mean, <span style="color: #006400;">"\n"</span>, sep=<span style="color: #006400;">"\t"</span>)
+    sink(<span style="color: #006400;">"/dev/null"</span>)
+}
+
+close(input)
+</pre>
+</div>
+
+<p>
+And  you input data file <code>stocks.txt</code> looks like the following
+format. The complete dataset can be downloaded from <a href="http://finance.yahoo.com/">http://finance.yahoo.com/</a>.
+</p>
+
+<pre class="example">
+AAPL,2009-01-02,85.88,91.04,85.16,90.75,26643400,90.75
+AAPL,2008-01-02,199.27,200.26,192.55,194.84,38542100,194.84
+AAPL,2007-01-03,86.29,86.58,81.90,83.80,44225700,83.80
+AAPL,2006-01-03,72.38,74.75,72.25,74.75,28829800,74.75
+AAPL,2005-01-03,64.78,65.11,62.60,63.29,24714000,31.65
+AAPL,2004-01-02,21.55,21.75,21.18,21.28,5165800,10.64
+AAPL,2003-01-02,14.36,14.92,14.35,14.80,6479600,7.40
+AAPL,2002-01-02,22.05,23.30,21.96,23.30,18910600,11.65
+AAPL,2001-01-02,14.88,15.25,14.56,14.88,16161800,7.44
+AAPL,2000-01-03,104.87,112.50,101.69,111.94,19144400,27.99
+CSCO,2009-01-02,16.41,17.00,16.25,16.96,40980600,16.96
+CSCO,2008-01-02,27.00,27.30,26.21,26.54,64338900,26.54
+CSCO,2007-01-03,27.46,27.98,27.33,27.73,64226000,27.73
+CSCO,2006-01-03,17.21,17.49,17.18,17.45,55426000,17.45
+CSCO,2005-01-03,19.42,19.61,19.27,19.32,56725600,19.32
+CSCO,2004-01-02,24.36,24.53,24.16,24.25,29955800,24.25
+CSCO,2003-01-02,13.11,13.69,13.09,13.64,61335700,13.64
+CSCO,2002-01-02,18.44,19.30,18.26,19.23,55376900,19.23
+CSCO,2001-01-02,38.13,38.50,32.63,33.31,17384600,33.31
+CSCO,2000-01-03,109.94,110.25,103.56,108.06,53076000,54.03
+GOOG,2009-01-02,308.60,321.82,305.50,321.32,3610500,321.32
+GOOG,2008-01-02,692.87,697.37,677.73,685.19,4306900,685.19
+GOOG,2007-01-03,466.00,476.66,461.11,467.59,7706500,467.59
+GOOG,2006-01-03,422.52,435.67,418.22,435.23,13121200,435.23
+GOOG,2005-01-03,197.40,203.64,195.46,202.71,15844200,202.71
+MSFT,2009-01-02,19.53,20.40,19.37,20.33,50084000,19.86
+MSFT,2008-01-02,35.79,35.96,35.00,35.22,63004200,33.79
+MSFT,2007-01-03,29.91,30.25,29.40,29.86,76935100,28.26
+MSFT,2006-01-03,26.25,27.00,26.10,26.84,79973000,25.04
+MSFT,2005-01-03,26.80,26.95,26.65,26.74,65002900,24.65
+MSFT,2004-01-02,27.58,27.77,27.33,27.45,44487700,22.64
+MSFT,2003-01-02,52.30,53.75,51.71,53.72,67025200,21.95
+MSFT,2002-01-02,66.65,67.11,65.51,67.04,48124000,27.40
+MSFT,2001-01-02,44.13,45.00,42.88,43.38,82413200,17.73
+MSFT,2000-01-03,117.37,118.62,112.00,116.56,53228400,47.64
+YHOO,2009-01-02,12.17,12.85,12.12,12.85,9514600,12.85
+YHOO,2008-01-02,23.80,24.15,23.60,23.72,25671700,23.72
+YHOO,2007-01-03,25.85,26.26,25.26,25.61,26352700,25.61
+YHOO,2006-01-03,39.69,41.22,38.79,40.91,24227700,40.91
+YHOO,2005-01-03,38.36,38.90,37.65,38.18,25482800,38.18
+YHOO,2004-01-02,45.50,45.83,45.12,45.40,16480000,22.70
+YHOO,2003-01-02,16.59,17.66,16.50,17.60,19640400,8.80
+YHOO,2002-01-02,18.14,18.69,17.68,18.63,21903600,9.31
+YHOO,2001-01-02,30.31,30.37,27.50,28.19,21939200,14.10
+YHOO,2000-01-03,442.92,477.00,429.50,475.00,38469600,118.75
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Your script has to be executable</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ chmod +x stock_day_avg.R
+</pre>
+</div>
+
+<p>
+And very importantly, you have to have your R installed on every
+worker node and the necessary R packages should be installed as well.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Quick test your file and mapper function</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ cat stocks.txt  | stock_day_avg.R
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-4" class="outline-4">
+<h4 id="sec-3-2-4"><span class="section-number-4">3.2.4</span> Upload the data file to HDFS</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ hadoop/bin/hadoop fs -put stocks.txt /
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-5" class="outline-4">
+<h4 id="sec-3-2-5"><span class="section-number-4">3.2.5</span> Submitting tasks</h4>
+<div class="outline-text-4" id="text-3-2-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ hadoop/bin/hadoop <span style="color: #006400;">\</span>
+              jar ~/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.5.2.jar <span style="color: #006400;">\</span>
+              -input /stocks.txt <span style="color: #006400;">\</span>
+              -output output <span style="color: #006400;">\</span>
+              -mapper <span style="color: #006400;">"stock_day_avg.R"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-6" class="outline-4">
+<h4 id="sec-3-2-6"><span class="section-number-4">3.2.6</span> View your result</h4>
+<div class="outline-text-4" id="text-3-2-6">
+<p>
+You can either view your result from the web interface or use the
+following HDFS command
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ hadoop/bin/hdfs dfs -cat /user/fli/output/part-00000
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Hadoop Streaming Documentation</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The complete Hadoop Streaming Documentation can be found from Hadoop
+Installation directory <code>share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-core/HadoopStreaming.html</code>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Hadoop with Java API</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We have the following Jave WordCount version MapReduce program that
+ counts the number of occurrences of each word in a given input
+ set. This works with a local-standalone, pseudo-distributed or
+ fully-distributed Hadoop installation.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">io</span>.<span style="color: #228b22;">IOException</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">util</span>.<span style="color: #228b22;">StringTokenizer</span>;
+
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">conf</span>.<span style="color: #228b22;">Configuration</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">fs</span>.<span style="color: #228b22;">Path</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">io</span>.<span style="color: #228b22;">IntWritable</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">io</span>.<span style="color: #228b22;">Text</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">mapreduce</span>.<span style="color: #228b22;">Job</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">mapreduce</span>.<span style="color: #228b22;">Mapper</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">mapreduce</span>.<span style="color: #228b22;">Reducer</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">mapreduce</span>.<span style="color: #008b8b;">lib</span>.<span style="color: #008b8b;">input</span>.<span style="color: #228b22;">FileInputFormat</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">hadoop</span>.<span style="color: #008b8b;">mapreduce</span>.<span style="color: #008b8b;">lib</span>.<span style="color: #008b8b;">output</span>.<span style="color: #228b22;">FileOutputFormat</span>;
+
+<span style="color: #ff00ff;">public</span> <span style="color: #ff00ff;">class</span> <span style="color: #228b22;">WordCount</span> {
+
+  <span style="color: #ff00ff;">public</span> <span style="color: #ff00ff;">static</span> <span style="color: #ff00ff;">class</span> <span style="color: #228b22;">TokenizerMapper</span>
+       <span style="color: #ff00ff;">extends</span> <span style="color: #228b22;">Mapper</span>&lt;<span style="color: #228b22;">Object</span>, <span style="color: #228b22;">Text</span>, <span style="color: #228b22;">Text</span>, <span style="color: #228b22;">IntWritable</span>&gt;{
+
+    <span style="color: #ff00ff;">private</span> <span style="color: #ff00ff;">final</span> <span style="color: #ff00ff;">static</span> <span style="color: #228b22;">IntWritable</span> <span style="color: #a0522d;">one</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">IntWritable</span>(1);
+    <span style="color: #ff00ff;">private</span> <span style="color: #228b22;">Text</span> <span style="color: #a0522d;">word</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">Text</span>();
+
+    <span style="color: #ff00ff;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff; font-weight: bold;">map</span>(<span style="color: #228b22;">Object</span> <span style="color: #a0522d;">key</span>, <span style="color: #228b22;">Text</span> <span style="color: #a0522d;">value</span>, <span style="color: #228b22;">Context</span> <span style="color: #a0522d;">context</span>
+                    ) <span style="color: #ff00ff;">throws</span> <span style="color: #228b22;">IOException</span>, <span style="color: #228b22;">InterruptedException</span> {
+      <span style="color: #228b22;">StringTokenizer</span> <span style="color: #a0522d;">itr</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">StringTokenizer</span>(value.toString());
+      <span style="color: #ff00ff;">while</span> (itr.hasMoreTokens()) {
+        word.set(itr.nextToken());
+        context.write(word, one);
+      }
+    }
+  }
+
+  <span style="color: #ff00ff;">public</span> <span style="color: #ff00ff;">static</span> <span style="color: #ff00ff;">class</span> <span style="color: #228b22;">IntSumReducer</span>
+       <span style="color: #ff00ff;">extends</span> <span style="color: #228b22;">Reducer</span>&lt;<span style="color: #228b22;">Text</span>,<span style="color: #228b22;">IntWritable</span>,<span style="color: #228b22;">Text</span>,<span style="color: #228b22;">IntWritable</span>&gt; {
+    <span style="color: #ff00ff;">private</span> <span style="color: #228b22;">IntWritable</span> <span style="color: #a0522d;">result</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">IntWritable</span>();
+
+    <span style="color: #ff00ff;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff; font-weight: bold;">reduce</span>(<span style="color: #228b22;">Text</span> <span style="color: #a0522d;">key</span>, <span style="color: #228b22;">Iterable</span>&lt;<span style="color: #228b22;">IntWritable</span>&gt; <span style="color: #a0522d;">values</span>,
+                       <span style="color: #228b22;">Context</span> <span style="color: #a0522d;">context</span>
+                       ) <span style="color: #ff00ff;">throws</span> <span style="color: #228b22;">IOException</span>, <span style="color: #228b22;">InterruptedException</span> {
+      <span style="color: #228b22;">int</span> <span style="color: #a0522d;">sum</span> = 0;
+      <span style="color: #ff00ff;">for</span> (<span style="color: #228b22;">IntWritable</span> <span style="color: #a0522d;">val</span> : values) {
+        sum += val.get();
+      }
+      result.set(sum);
+      context.write(key, result);
+    }
+  }
+
+  <span style="color: #ff00ff;">public</span> <span style="color: #ff00ff;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff; font-weight: bold;">main</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">args</span>) <span style="color: #ff00ff;">throws</span> <span style="color: #228b22;">Exception</span> {
+    <span style="color: #228b22;">Configuration</span> <span style="color: #a0522d;">conf</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">Configuration</span>();
+    <span style="color: #228b22;">Job</span> <span style="color: #a0522d;">job</span> = Job.getInstance(conf, <span style="color: #006400;">"word count"</span>);
+    job.setJarByClass(WordCount.<span style="color: #ff00ff;">class</span>);
+    job.setMapperClass(TokenizerMapper.<span style="color: #ff00ff;">class</span>);
+    job.setCombinerClass(IntSumReducer.<span style="color: #ff00ff;">class</span>);
+    job.setReducerClass(IntSumReducer.<span style="color: #ff00ff;">class</span>);
+    job.setOutputKeyClass(Text.<span style="color: #ff00ff;">class</span>);
+    job.setOutputValueClass(IntWritable.<span style="color: #ff00ff;">class</span>);
+    FileInputFormat.addInputPath(job, <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">Path</span>(args[0]));
+    FileOutputFormat.setOutputPath(job, <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">Path</span>(args[1]));
+    System.exit(job.waitForCompletion(<span style="color: #008b8b;">true</span>) ? 0 : 1);
+  }
+}
+</pre>
+</div>
+
+
+<p>
+Before we compile our java program. Make sure the following
+environment variables are set properly.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #008b8b;">export</span> <span style="color: #a0522d;">JAVA_HOME</span>=/usr/lib/jvm/default-java/
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">PATH</span>=$<span style="color: #a0522d;">JAVA_HOME</span>/bin:$<span style="color: #a0522d;">PATH</span>
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_CLASSPATH</span>=$<span style="color: #a0522d;">JAVA_HOME</span>/lib/tools.jar
+</pre>
+</div>
+
+<p>
+You can check them from the terminal as
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #008b8b;">echo</span> $<span style="color: #a0522d;">HADOOP_CLASSPATH</span>
+</pre>
+</div>
+
+
+<p>
+Now we can compile <code>WordCount.java</code> and create a jar file
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop$ ~/hadoop/bin/hadoop com.sun.tools.javac.Main WordCount.java
+fli@carbon:~/hadoop$ jar cf wc.jar WordCount*.class
+</pre>
+</div>
+
+<p>
+Then you will find a <code>wc.jar</code> at the same directory with
+<code>WordCount.java</code>.
+</p>
+
+<p>
+Now let's upload some files to HDFS. We make an input directory named
+<code>input</code> that contains all our files to be counted. We would like to
+write all the output to <code>output</code> directory.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop$ bin/hadoop fs -mkdir -p WordCount/input
+fli@carbon:~/hadoop$ bin/hadoop fs -ls WordCount/input
+Found 3 items
+-rw-r--r--   1 fli supergroup      15458 2014-12-08 09:45 WordCount/input/LICENSE.txt
+-rw-r--r--   1 fli supergroup        101 2014-12-08 09:45 WordCount/input/NOTICE.txt
+-rw-r--r--   1 fli supergroup       1366 2014-12-08 09:45 WordCount/input/README.txt
+</pre>
+</div>
+
+<p>
+Please note that in above commands we have omitted the absolute path. So
+<code>WordCount/input</code> really means <code>/user/fli/WordCount/input</code> in HDFS.
+</p>
+
+<p>
+We are going to submit our WordCount program to Hadoop
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop$ bin/hadoop jar wc.jar WordCount<span style="color: #006400;">\</span>
+                     WordCount/input <span style="color: #006400;">\</span>
+                     WordCount/output
+</pre>
+</div>
+
+<p>
+Check the command output message, you will see a line like <code>Job
+job_local1195814039_0001 completed successfully</code> and you can find the
+output at HDFS
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/hadoop$ ~/hadoop/bin/hadoop fs -cat WordCount/output/*
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Statistical Modeling with Hadoop</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Linear Regression Models.</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+The core algorithm for linear regression modeling is to code up a
+mapreduce procedure for X'Y and X'X. One can decompose this into
+many submatrix multiplications and sum them over in the end. See
+the lecture notes for details.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Logistic Regression Models</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+You will need to code up your own algorithm for estimating the
+coefficients in the model. You can use the RHadoop API or Mahout.
+</p>
+</div>
+
+<div id="outline-container-sec-5-2-1" class="outline-4">
+<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> RHadoop</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+RHadoop is a collection of five R packages that allow users to
+manage and analyze data with Hadoop. Examples and helps can be
+found from <a href="https://github.com/RevolutionAnalytics/RHadoop/wiki">https://github.com/RevolutionAnalytics/RHadoop/wiki</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-2" class="outline-4">
+<h4 id="sec-5-2-2"><span class="section-number-4">5.2.2</span> Mahout</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+See next section.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5-2-3" class="outline-4">
+<h4 id="sec-5-2-3"><span class="section-number-4">5.2.3</span> Via approximations.</h4>
+<div class="outline-text-4" id="text-5-2-3">
+<p>
+See lecture notes.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Statistical Learning with Mahout</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Quick Install Mahout</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Use the binary release</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+Please visit <a href="https://mahout.apache.org/">https://mahout.apache.org/</a> to download the latest
+binary version (currently 0.9 is the release version) of Mahout. But
+remember that this version does not work well with Hadoop 2.5.2.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> Compile your mahout that matches your hadoop</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+Instead of using the binary version, one may need to compile mahout to
+match the system hadoop (version 2.x).
+</p>
+
+<p>
+Make sure you have <code>maven</code> and <code>git</code> installed in your system
+</p>
+<pre class="example">
+fli@carbon:~$ sudo apt-get install maven git
+</pre>
+
+<p>
+You need to clone the newest mahout from the repository with <code>git</code>
+</p>
+<pre class="example">
+fli@carbon:~$ git clone --branch master git://github.com/apache/mahout.git mahout
+</pre>
+
+<p>
+Now compile and pack mahout with Hadoop 2.x. This take a while
+</p>
+
+<pre class="example">
+fli@carbon:~$ cd mahout
+fli@carbon:~/mahout$ mvn -Dhadoop2.version=2.5.2 clean compile
+fli@carbon:~/mahout$ mvn -Dhadoop2.version=2.5.2 -DskipTests=true clean package
+fli@carbon:~/mahout$ mvn -Dhadoop2.version=2.5.2 -DskipTests=true
+clean install
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Set up the necessary environment variables</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Make sure the following environment variables are set properly
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #008b8b;">export</span> <span style="color: #a0522d;">MAHOUT_HOME</span>=$<span style="color: #a0522d;">HOME</span>/mahout/
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">MAHOUT_CONF_DIR</span>=$<span style="color: #a0522d;">MAHOUT_HOME</span>/conf/
+</pre>
+</div>
+
+<p>
+To integrate Mahout with Hadoop, make sure your Hadoop is installed
+properly and the following environment variables are correctly
+specified.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_HOME</span>=$<span style="color: #a0522d;">HOME</span>/hadoop/
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_CLASSPATH</span>=$<span style="color: #a0522d;">JAVA_HOME</span>/lib/tools.jar
+<span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_CONF_DIR</span>=$<span style="color: #a0522d;">HADOOP_HOME</span>/etc/hadoop/
+</pre>
+</div>
+
+<p>
+Note: There is a special environment variable <code>MAHOUT_LOCAL</code>. If it is set
+to not empty value. Mahout will run locally.
+</p>
+
+<p>
+After installation, you will find all possible algorithms in your
+version.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~/mahout$ bin/mahout
+MAHOUT_LOCAL is not set; adding HADOOP_CONF_DIR to classpath.
+Running on hadoop, using /home/fli/hadoop//bin/hadoop and <span style="color: #a0522d;">HADOOP_CONF_DIR</span>=/home/fli/hadoop//etc/hadoop/
+MAHOUT-JOB: /home/fli/mahout/mahout-examples-0.9-job.jar
+An example program must be given as the first argument.
+Valid program names are:
+  arff.vector: : Generate Vectors from an ARFF file or directory
+  baumwelch: : Baum-Welch algorithm for unsupervised HMM training
+  canopy: : Canopy clustering
+  cat: : Print a file or resource as the logistic regression models would see it
+  cleansvd: : Cleanup and verification of SVD output
+  clusterdump: : Dump cluster output to text
+  clusterpp: : Groups Clustering Output In Clusters
+  cmdump: : Dump confusion matrix<span style="color: #ff00ff;"> in</span> HTML or text formats
+  concatmatrices: : Concatenates 2 matrices of same cardinality into a single matrix
+  cvb: : LDA via Collapsed Variation Bayes (0th deriv. approx)
+  cvb0_local: : LDA via Collapsed Variation Bayes,<span style="color: #ff00ff;"> in</span> memory locally.
+  evaluateFactorization: : compute RMSE and MAE of a rating matrix factorization against probes
+  fkmeans: : Fuzzy K-means clustering
+  hmmpredict: : Generate random sequence of observations by given HMM
+  itemsimilarity: : Compute the item-item-similarities for item-based collaborative filtering
+  kmeans: : K-means clustering
+  lucene.vector: : Generate Vectors from a Lucene index
+  lucene2seq: : Generate Text SequenceFiles from a Lucene index
+  matrixdump: : Dump matrix<span style="color: #ff00ff;"> in</span> CSV format
+  matrixmult: : Take the product of two matrices
+  parallelALS: : ALS-WR factorization of a rating matrix
+  qualcluster: : Runs clustering experiments and summarizes results<span style="color: #ff00ff;"> in</span> a CSV
+  recommendfactorized: : Compute recommendations using the factorization of a rating matrix
+  recommenditembased: : Compute recommendations using item-based collaborative filtering
+  regexconverter: : Convert text files on a per line basis based on regular expressions
+  resplit: : Splits a set of SequenceFiles into a number of equal splits
+  rowid: : Map SequenceFile&lt;Text,VectorWritable&gt; to {SequenceFile&lt;IntWritable,VectorWritable&gt;, SequenceFile&lt;IntWritable,Text&gt;}
+  rowsimilarity: : Compute the pairwise similarities of the rows of a matrix
+  runAdaptiveLogistic: : Score new production data using a probably trained and validated AdaptivelogisticRegression model
+  runlogistic: : Run a logistic regression model against CSV data
+  seq2encoded: : Encoded Sparse Vector generation from Text sequence files
+  seq2sparse: : Sparse Vector generation from Text sequence files
+  seqdirectory: : Generate sequence files (of Text) from a directory
+  seqdumper: : Generic Sequence File dumper
+  seqmailarchives: : Creates SequenceFile from a directory containing gzipped mail archives
+  seqwiki: : Wikipedia xml dump to sequence file
+  spectralkmeans: : Spectral k-means clustering
+  split: : Split Input data into test and train sets
+  splitDataset: : split a rating dataset into training and probe parts
+  ssvd: : Stochastic SVD
+  streamingkmeans: : Streaming k-means clustering
+  svd: : Lanczos Singular Value Decomposition
+  testnb: : Test the Vector-based Bayes classifier
+  trainAdaptiveLogistic: : Train an AdaptivelogisticRegression model
+  trainlogistic: : Train a logistic regression using stochastic gradient descent
+  trainnb: : Train the Vector-based Bayes classifier
+  transpose: : Take the transpose of a matrix
+  validateAdaptiveLogistic: : Validate an AdaptivelogisticRegression model against hold-out data set
+  vecdist: : Compute the distances between a set of Vectors (or Cluster or Canopy, they must fit<span style="color: #ff00ff;"> in</span> memory) and a list of Vectors
+  vectordump: : Dump vectors from a sequence file to text
+  viterbi: : Viterbi decoding of hidden states from given output states sequence
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Run a Mahout Job</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>Let Hadoop/HDFS up and run
+</li>
+<li>Upload data to HDFS
+</li>
+<li>Run the example
+</li>
+</ul>
+
+<p>
+Assume you have uploaded a text data <a href="http://archive.ics.uci.edu/ml/databases/synthetic_control/synthetic_control.data">http://archive.ics.uci.edu/ml/databases/synthetic_control/synthetic_control.data</a>
+to HDFS's user directory <code>testdata</code>
+</p>
+
+<p>
+You may run the command by calling Mahout directly which invokes
+Hadoop from the back,
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ mahout/bin/mahout org.apache.mahout.clustering.syntheticcontrol.canopy.Job
+</pre>
+</div>
+
+<p>
+Or one can call Mahout from Hadoop
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ hadoop/bin/hadoop jar <span style="color: #006400;">\</span>
+              $<span style="color: #a0522d;">MAHOUT_HOME</span>/examples/target/mahout-examples-1.0-SNAPSHOT-job.jar <span style="color: #006400;">\</span>
+              org.apache.mahout.clustering.syntheticcontrol.canopy.Job
+</pre>
+</div>
+
+<p>
+The output will be at your <code>output</code> directory under your HDFS user
+directory. For more information about this example, please visit <a href="https://mahout.apache.org/users/clustering/canopy-clustering.html">https://mahout.apache.org/users/clustering/canopy-clustering.html</a>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Mahout build-in examples</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+There are a lot ready-to-use examples at <code>mahout/examples/bin</code>
+directory. Just run e.g.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~ mahout/examples/bin/classify-20newsgroups.sh
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> Classification with random forests</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+We will run the random forests algorithm with Mahout 1.0 and Hadoop 2.5.2.
+</p>
+</div>
+
+<div id="outline-container-sec-6-5-1" class="outline-4">
+<h4 id="sec-6-5-1"><span class="section-number-4">6.5.1</span> Upload the data to HDFS's directory</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ ~/hadoop/bin/hadoop fs -put KDD* testdata
+fli@carbon:~$ ~/hadoop/bin/hadoop fs -ls testdata
+Found 2 items
+-rw-r--r--   1 fli supergroup    3365886 2014-12-14 17:32 testdata/KDDTest+.arff
+-rw-r--r--   1 fli supergroup   18742306 2014-12-14 17:32 testdata/KDDTrain+.arff
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-5-2" class="outline-4">
+<h4 id="sec-6-5-2"><span class="section-number-4">6.5.2</span> Generate the dataset description</h4>
+<div class="outline-text-4" id="text-6-5-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ ~/hadoop/bin/hadoop jar <span style="color: #006400;">\</span>
+              $<span style="color: #a0522d;">MAHOUT_HOME</span>/examples/target/mahout-examples-1.0-SNAPSHOT-job.jar <span style="color: #006400;">\</span>
+              org.apache.mahout.classifier.df.tools.Describe <span style="color: #006400;">\</span>
+              -p testdata/KDDTrain+.arff <span style="color: #006400;">\</span>
+              -f testdata/KDDTrain+.info  <span style="color: #006400;">\</span>
+              -d N 3 C 2 N C 4 N C 8 N 2 C 19 N L
+</pre>
+</div>
+<p>
+where the "N 3 C 2 N C 4 N C 8 N 2 C 19 N L" string describes all the
+attributes of the data. In this cases, it means 1 numerical(N)
+attribute, followed by 3 Categorical(C) attributes, &#x2026;L indicates the
+label.
+</p>
+
+<p>
+A file named <code>KDDTrain+.info</code> will be generated and stored in
+<code>testdata</code> directory. Check it with
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ ~/hadoop/bin/hadoop fs -cat testdata/*.info
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-5-3" class="outline-4">
+<h4 id="sec-6-5-3"><span class="section-number-4">6.5.3</span> Build the model</h4>
+<div class="outline-text-4" id="text-6-5-3">
+<p>
+We will try to build 100 trees (-t argument) using the partial
+implementation (-p). Each tree is built using 5 random selected
+attribute per node (-sl argument) and the example outputs the decision
+tree in the "nsl-forest" directory (-o).
+</p>
+
+<p>
+The number of partitions is controlled by the -Dmapred.max.split.size
+argument that indicates to Hadoop the max. size of each partition, in
+this case 1/10 of the size of the dataset. Thus 10 partitions will be
+used. IMPORTANT: using less partitions should give better
+classification results, but needs a lot of memory.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ ~/hadoop/bin/hadoop jar <span style="color: #006400;">\</span>
+              $<span style="color: #a0522d;">MAHOUT_HOME</span>/examples/target/mahout-examples-1.0-SNAPSHOT-job.jar <span style="color: #006400;">\</span>
+              org.apache.mahout.classifier.df.mapreduce.BuildForest <span style="color: #006400;">\</span>
+              -Dmapred.max.split.size=1874231 <span style="color: #006400;">\</span>
+              -d testdata/KDDTrain+.arff <span style="color: #006400;">\</span>
+              -ds testdata/KDDTrain+.info <span style="color: #006400;">\</span>
+              -sl 5 -p -t 100 -o nsl-forest
+</pre>
+</div>
+
+<p>
+A directory named <code>nsl-forest</code> will be generated that contains all the
+model parameters.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-5-4" class="outline-4">
+<h4 id="sec-6-5-4"><span class="section-number-4">6.5.4</span> Use the model to classify new data</h4>
+<div class="outline-text-4" id="text-6-5-4">
+<p>
+Now we can compute the predictions of "KDDTest+.arff" dataset (-i
+argument) using the same data descriptor generated for the training
+dataset (-ds) and the decision forest built previously
+(-m). Optionally (if the test dataset contains the labels of the
+tuples) run the analyzer to compute the confusion matrix (-a), and you
+can also store the predictions in a text file or a directory of text
+files(-o). Passing the (-mr) parameter will use Hadoop to distribute
+the classification.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">fli@carbon:~$ ~/hadoop/bin/hadoop jar <span style="color: #006400;">\</span>
+              $<span style="color: #a0522d;">MAHOUT_HOME</span>/examples/target/mahout-examples-1.0-SNAPSHOT-job.jar <span style="color: #006400;">\</span>
+              org.apache.mahout.classifier.df.mapreduce.TestForest <span style="color: #006400;">\</span>
+              -i testdata/KDDTest+.arff <span style="color: #006400;">\</span>
+              -ds testdata/KDDTrain+.info <span style="color: #006400;">\</span>
+              -m nsl-forest  <span style="color: #006400;">\</span>
+              -a -mr <span style="color: #006400;">\</span>
+              -o predictions
+</pre>
+</div>
+
+<p>
+which will return the following summary (as below) and the result will
+be stored in the <code>predictions</code> directory.
+</p>
+
+<pre class="example">
+=======================================================
+Summary
+-------------------------------------------------------
+Correctly Classified Instances          :      17162	   76.1267%
+Incorrectly Classified Instances        :       5382	   23.8733%
+Total Classified Instances              :      22544
+
+=======================================================
+Confusion Matrix
+-------------------------------------------------------
+a    	b    	&lt;--Classified as
+8994 	717  	 |  9711  	a     = normal
+4665 	8168 	 |  12833 	b     = anomaly
+
+=======================================================
+Statistics
+-------------------------------------------------------
+Kappa                                        0.536
+Accuracy                                   76.1267%
+Reliability                                52.0883%
+Reliability (standard deviation)            0.4738
+Weighted precision                          0.8069
+Weighted recall                             0.7613
+Weighted F1 score                           0.7597
+</pre>
+
+
+<p>
+If you have any question concerning with random forests, read Chapter
+15 of <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">The Elements
+of Statistical Learning</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Introduction to Spark</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Spark Shell</h3>
+<div class="outline-text-3" id="text-7-1">
+</div><div id="outline-container-sec-7-1-1" class="outline-4">
+<h4 id="sec-7-1-1"><span class="section-number-4">7.1.1</span> Interactive Analysis with the Spark Shell</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<ul class="org-ul">
+<li>Spark's shell provides a simple way to learn the API, as well as a powerful tool to
+analyze data interactively. It is available in either Scala (which runs on the Java VM
+and is thus a good way to use existing Java libraries) or Python.
+</li>
+
+<li>Start the Python version with exactly 4 cores by running the following in the
+Spark directory:
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">./bin/pyspark --master local[4]
+</pre>
+</div>
+
+<p>
+To find a complete list of options, run <code>pyspark --help</code>.
+</p>
+
+<ul class="org-ul">
+<li>Start the Scala version by running the following in the Spark directory:
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">./bin/spark-shell
+</pre>
+</div>
+
+
+<ul class="org-ul">
+<li>All examples based on this section will be based on Python. One may also check out
+the Scala version at <a href="http://spark.apache.org/docs/latest/programming-guide.html">http://spark.apache.org/docs/latest/programming-guide.html</a>
+</li>
+
+<li>Spark's primary abstraction is a distributed collection of items called a
+Resilient Distributed Dataset (RDD). RDDs can be created from Hadoop
+InputFormats (such as HDFS files) or by transforming other RDDs.
+</li>
+
+<li>To make a new RDD from the text of the README file in the Spark source directory:
+</li>
+</ul>
+
+<pre class="example">
+&gt;&gt;&gt; textFile = sc.textFile("README.md")
+</pre>
+
+
+<ul class="org-ul">
+<li>RDDs have actions, which return values, and transformations, which return pointers to
+new RDDs.
+</li>
+</ul>
+
+<pre class="example">
+&gt;&gt;&gt; textFile.count() # Number of items in this RDD
+126
+
+&gt;&gt;&gt; textFile.first() # First item in this RDD
+u'# Apache Spark'
+</pre>
+
+<ul class="org-ul">
+<li>RDD actions and transformations can be used for more complex computations. Let’s
+say we want to find the line with the most words:
+</li>
+</ul>
+
+<pre class="example">
+&gt;&gt;&gt; textFile.map(lambda line: len(line.split())).reduce(lambda a, b: a if (a &gt; b) else b)
+15
+</pre>
+
+<ul class="org-ul">
+<li>Spark also supports pulling data sets into a cluster-wide in-memory cache. This is
+very useful when data is accessed repeatedly
+</li>
+</ul>
+
+<pre class="example">
+&gt;&gt;&gt; linesWithSpark.cache()
+
+&gt;&gt;&gt; linesWithSpark.count()
+15
+
+&gt;&gt;&gt; linesWithSpark.count()
+15
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> Standalone Applications</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li>Assume we like to write a program that just counts the number of lines containing 'a'
+and the number containing 'b' in the Spark README.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-7-2-1" class="outline-4">
+<h4 id="sec-7-2-1"><span class="section-number-4">7.2.1</span> The Python version</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<div class="org-src-container">
+
+<pre class="src src-py">"""SimpleApp.py"""
+from pyspark import SparkContext
+
+logFile = "YOUR_SPARK_HOME/README.md"  # some file on system
+sc = SparkContext("local", "Simple App")
+logData = sc.textFile(logFile).cache()
+
+numAs = logData.filter(lambda s: 'a' in s).count()
+numBs = logData.filter(lambda s: 'b' in s).count()
+
+print "Lines with a: %i, lines with b: %i" % (numAs, numBs)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2-2" class="outline-4">
+<h4 id="sec-7-2-2"><span class="section-number-4">7.2.2</span> The Java version</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<div class="org-src-container">
+
+<pre class="src src-java"># <span style="color: #0000ff;">/* </span><span style="color: #0000ff;">SimpleApp.java */</span>
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">spark</span>.<span style="color: #008b8b;">api</span>.<span style="color: #008b8b;">java</span>.*;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">spark</span>.<span style="color: #228b22;">SparkConf</span>;
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">spark</span>.<span style="color: #008b8b;">api</span>.<span style="color: #008b8b;">java</span>.<span style="color: #008b8b;">function</span>.<span style="color: #228b22;">Function</span>;
+
+<span style="color: #ff00ff;">public</span> <span style="color: #ff00ff;">class</span> <span style="color: #228b22;">SimpleApp</span> {
+  <span style="color: #ff00ff;">public</span> <span style="color: #ff00ff;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff; font-weight: bold;">main</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">args</span>) {
+    <span style="color: #228b22;">String</span> <span style="color: #a0522d;">logFile</span> = <span style="color: #006400;">"YOUR_SPARK_HOME/README.md"</span>; <span style="color: #0000ff;">// </span><span style="color: #0000ff;">Should be some file on your system</span>
+    <span style="color: #228b22;">SparkConf</span> <span style="color: #a0522d;">conf</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">SparkConf</span>().setAppName(<span style="color: #006400;">"Simple Application"</span>);
+    <span style="color: #228b22;">JavaSparkContext</span> <span style="color: #a0522d;">sc</span> = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">JavaSparkContext</span>(conf);
+    <span style="color: #228b22;">JavaRDD</span>&lt;<span style="color: #228b22;">String</span>&gt; <span style="color: #a0522d;">logData</span> = sc.textFile(logFile).cache();
+
+    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">numAs</span> = logData.filter(<span style="color: #ff00ff;">new</span> <span style="color: #228b22;">Function</span>&lt;<span style="color: #228b22;">String</span>, <span style="color: #228b22;">Boolean</span>&gt;() {
+      <span style="color: #ff00ff;">public</span> <span style="color: #228b22;">Boolean</span> <span style="color: #0000ff; font-weight: bold;">call</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span>) { <span style="color: #ff00ff;">return</span> s.contains(<span style="color: #006400;">"a"</span>); }
+    }).count();
+
+    <span style="color: #228b22;">long</span> <span style="color: #a0522d;">numBs</span> = logData.filter(<span style="color: #ff00ff;">new</span> <span style="color: #228b22;">Function</span>&lt;<span style="color: #228b22;">String</span>, <span style="color: #228b22;">Boolean</span>&gt;() {
+      <span style="color: #ff00ff;">public</span> <span style="color: #228b22;">Boolean</span> <span style="color: #0000ff; font-weight: bold;">call</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span>) { <span style="color: #ff00ff;">return</span> s.contains(<span style="color: #006400;">"b"</span>); }
+    }).count();
+
+    System.out.println(<span style="color: #006400;">"Lines with a: "</span> + numAs + <span style="color: #006400;">", lines with b: "</span> + numBs);
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2-3" class="outline-4">
+<h4 id="sec-7-2-3"><span class="section-number-4">7.2.3</span> The Scala version</h4>
+<div class="outline-text-4" id="text-7-2-3">
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #0000ff;">/* </span><span style="color: #0000ff;">SimpleApp.scala */</span>
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">spark</span>.<span style="color: #228b22;">SparkContext</span>
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">spark</span>.SparkContext.<span style="color: #228b22;">_</span>
+<span style="color: #ff00ff;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">apache</span>.<span style="color: #008b8b;">spark</span>.<span style="color: #228b22;">SparkConf</span>
+
+<span style="color: #228b22;">object</span> <span style="color: #a0522d;">SimpleApp</span> {
+  <span style="color: #228b22;">def</span> <span style="color: #a0522d;">main</span>(args: Array[String]) {
+    <span style="color: #228b22;">val</span> <span style="color: #a0522d;">logFile</span> = <span style="color: #006400;">"YOUR_SPARK_HOME/README.md"</span> <span style="color: #0000ff;">// </span><span style="color: #0000ff;">Should be some file on your system</span>
+    val conf = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">SparkConf</span>().setAppName(<span style="color: #006400;">"Simple Application"</span>)
+    val sc = <span style="color: #ff00ff;">new</span> <span style="color: #228b22;">SparkContext</span>(conf)
+    val logData = sc.textFile(logFile, 2).cache()
+    val numAs = logData.filter(line =&gt; line.contains(<span style="color: #006400;">"a"</span>)).count()
+    val numBs = logData.filter(line =&gt; line.contains(<span style="color: #006400;">"b"</span>)).count()
+    println(<span style="color: #006400;">"Lines with a: %s, Lines with b: %s"</span>.format(numAs, numBs))
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Submitting Applications to Spark</h3>
+<div class="outline-text-3" id="text-7-3">
+</div><div id="outline-container-sec-7-3-1" class="outline-4">
+<h4 id="sec-7-3-1"><span class="section-number-4">7.3.1</span> Bundling Your Application's Dependencies</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<ul class="org-ul">
+<li>If your code depends on other projects, you will need to package them alongside your
+application in order to distribute the code to a Spark cluster.
+</li>
+
+<li>To do this, to create an assembly jar containing your code and its
+dependencies.  When creating assembly jars, list Spark and Hadoop as provided
+dependencies; these need not be bundled since they are provided by the cluster
+manager at runtime.
+</li>
+
+<li>For Python, you can use the <code>--py-files</code> argument of <code>spark-submit</code> to add .py,
+.zip or .egg files to be distributed with your application. If you depend on
+multiple Python files, pack them into a .zip or .egg.
+</li>
+
+<li>Once a user application is bundled, it can be launched using the
+</li>
+</ul>
+<p>
+<code>bin/spark-submit</code> script.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-2" class="outline-4">
+<h4 id="sec-7-3-2"><span class="section-number-4">7.3.2</span> Run Your Application</h4>
+<div class="outline-text-4" id="text-7-3-2">
+<ul class="org-ul">
+<li>Run application locally on 8 cores
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">./bin/spark-submit <span style="color: #006400;">\</span>
+  --class org.apache.spark.examples.SparkPi <span style="color: #006400;">\</span>
+  --master local[8] <span style="color: #006400;">\</span>
+  /path/to/examples.jar <span style="color: #006400;">\</span>
+  100
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Run on a Spark standalone cluster
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">./bin/spark-submit <span style="color: #006400;">\</span>
+  --class org.apache.spark.examples.SparkPi <span style="color: #006400;">\</span>
+  --master spark://207.184.161.138:7077 <span style="color: #006400;">\</span>
+  --executor-memory 20G <span style="color: #006400;">\</span>
+  --total-executor-cores 100 <span style="color: #006400;">\</span>
+  /path/to/examples.jar <span style="color: #006400;">\</span>
+  1000
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Run on a Hadoop YARN cluster
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #008b8b;">export</span> <span style="color: #a0522d;">HADOOP_CONF_DIR</span>=XXX
+./bin/spark-submit <span style="color: #006400;">\</span>
+  --class org.apache.spark.examples.SparkPi <span style="color: #006400;">\</span>
+  --master yarn-cluster <span style="color: #006400;">\ </span> <span style="color: #0000ff;"># </span><span style="color: #0000ff;">can also be `yarn-client` for client mode</span>
+  --executor-memory 20G <span style="color: #006400;">\</span>
+  --num-executors 50 <span style="color: #006400;">\</span>
+  /path/to/examples.jar <span style="color: #006400;">\</span>
+  1000
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Run a Python application on a cluster
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">./bin/spark-submit <span style="color: #006400;">\</span>
+  --master spark://207.184.161.138:7077 <span style="color: #006400;">\</span>
+  examples/src/main/python/pi.py <span style="color: #006400;">\</span>
+  1000
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Feng Li</p>
+<p class="date">Created: 2014-12-17 Wed 18:33</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
