@@ -6,9 +6,8 @@
     School of Statistics and Mathematics
     Central University of Finance and Economics
     feng.li@cufe.edu.cn
-
-
-    由中央财经大学统计与数学学院[李丰](https://feng.li/)建设
+    
+由中央财经大学统计与数学学院[李丰](https://feng.li/)建设。
 
 ## Course Homepage （课程主页）
 
