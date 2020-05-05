@@ -8,7 +8,7 @@
     feng.li@cufe.edu.cn
 
 
-    由中央财经大学统计与数学学院李丰建设
+    由中央财经大学统计与数学学院[李丰](https://feng.li/)建设
 
 ## Course Homepage （课程主页）
 
@@ -22,7 +22,6 @@
 - New version [In Preparation](https://github.com/feng-li/distcompbook)
 
 ## Contents (目录)
-========
 
 ### Teaching slides and demo code (with Jupyter Notebook format)
 
