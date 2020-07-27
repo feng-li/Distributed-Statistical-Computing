@@ -24,6 +24,11 @@
 
 ### Teaching slides and demo code (with Jupyter Notebook format)
 
+#### Quick View
+
+You coud view all the notebooks in this repository via the [Jupyter Notebook Viewer](https://nbviewer.jupyter.org/github/feng-li/Distributed-Statistical-Computing)
+
+#### Run the demo locally
 Requirements to run the notebook interactively
 
 - Python (>= 3.6.0)
