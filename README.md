@@ -13,12 +13,15 @@
 
    [https://feng.li/distcomp/](https://feng.li/distcomp/)
 
-## Books (配套教材)
+## Books (中文配套教材)
 
 - Distributed Statistical Computing for Big Data and Case Studies (大数据分布式计算与案例) ISBN：9787300230276
     - Available at [JD.COM](https://item.jd.com/11990410.html)
 
-- New version [In Preparation](https://github.com/feng-li/distcompbook)
+- New version (In Preparation)
+
+    - [HTML format](https://feng.li/files/distcompbook)
+    - [Source](https://github.com/feng-li/distcompbook)
 
 ## Contents (目录)
 
