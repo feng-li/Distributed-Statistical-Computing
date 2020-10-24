@@ -1,23 +1,22 @@
-#!/bin/bash
+#! /bin/bash
 
 PWD=$(cd $(dirname $0); pwd)
 cd $PWD 1> /dev/null 2>&1
 
-TASKNAME=task3_fli
-# python location on hadoop
-PY27='/fli/tools/python2.7.tar.gz'
+TASKNAME=hadoop_task_fli
+
 # hadoop client
-HADOOP_HOME=/home/users/fli/hadoop/bin/hadoop
-HADOOP_INPUT_DIR1=/fli/data/part-*
-HADOOP_OUTPUT_DIR=/fli/results/task2
+HADOOP_INPUT_DIR=/fli/data/part-*
+HADOOP_OUTPUT_DIR=/fli/results/task
+HADOOP_VERSION=3.1.3
 
 echo $HADOOP_HOME
 echo $HADOOP_INPUT_DIR
 echo $HADOOP_OUTPUT_DIR
 
-$HADOOP_HOME fs -rmr $HADOOP_OUTPUT_DIR
+hadoop fs -rm -r $HADOOP_OUTPUT_DIR
 
-$HADOOP_HOME streaming \
+hadoop jar  ${HADOOP_HOME}/share/hadoop/tools/lib/hadoop-streaming-${HADOOP_VERSION}.jar \
     -jobconf mapred.job.name=$TASKNAME \
     -jobconf mapred.job.priority=NORMAL \
     -jobconf mapred.map.tasks=100 \
@@ -31,17 +30,9 @@ $HADOOP_HOME streaming \
     -output ${HADOOP_OUTPUT_DIR} \
     -input ${HADOOP_INPUT_DIR1} \
     -mapper "sh mapper.sh" \
-    -reducer "python reducer.py" \
-    -cacheArchive ${PY27}#py27 \
+    -reducer "python3 reducer.py" \
     -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
 
+hadoop fs -cat ${HADOOP_OUTPUT_DIR}/*
 
-if [ $? -ne 0 ]; then
-    echo 'error'
-    exit 1
-fi
-$HADOOP_HOME fs -touchz ${HADOOP_OUTPUT_DIR}/done
-
-exit 0
-
-
+exit 0;
