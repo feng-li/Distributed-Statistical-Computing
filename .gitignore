@@ -6,3 +6,5 @@
 *.rar
 *.zip
 **/old
+**/.ipynb_checkpoints/**
+*.log
