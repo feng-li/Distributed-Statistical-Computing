@@ -14172,20 +14172,27 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Run-a-remote-Jupyter-Notebook-using-the-SSH-tunnel">Run a remote Jupyter Notebook using the SSH tunnel<a class="anchor-link" href="#Run-a-remote-Jupyter-Notebook-using-the-SSH-tunnel">&#182;</a></h2><ul>
+<li><p>Login to a remote server</p>
+
+<pre><code> ssh  -p 26506 teacher01@hz-t3.matpool.com</code></pre>
+</li>
+<li><p>Start a Jupyter notebook on the server</p>
+
+<pre><code> jupyter notebook --port 8888
+
+</code></pre>
+<p>Also copy the string <code>http://localhost:8888/?token=a373718460df0437c443eeadb7250e7793d6524f80f129cc</code> printed on the terminal.</p>
+</li>
 <li><p>Start a terminal on your local machine and run:</p>
 
 <pre><code>  ssh  -p 26506 -L 8008:127.0.0.1:8888 teacher01@hz-t3.matpool.com
 
 </code></pre>
-<p>where <code>26506</code> is your remote server's SSH port,  <code>teacher01</code> is your remote server's username, <code>hz-t3.matpool.com</code> is your remote server's address, <code>8008:127.0.0.1:8888</code> means forwarding your remote server's <code>8888</code> prot to your local machine's port <code>8008</code>.</p>
+<p>where <code>8008:127.0.0.1:8888</code> means forwarding your remote server's <code>8888</code> prot to your local machine's port <code>8008</code>.</p>
 </li>
-<li><p>Start or connect to a remote Jupyter Notebook server locally:</p>
-
-<pre><code>  jupyter notebook</code></pre>
+<li><p>Open your bowser and connect to the remote Jupyter Notebook server locally with the link (replace <code>8888</code> with <code>8008</code> from your saved string)</p>
+<p><a href="http://localhost:8008/?token=a373718460df0437c443eeadb7250e7793d6524f80f129cc">http://localhost:8008/?token=a373718460df0437c443eeadb7250e7793d6524f80f129cc</a></p>
 </li>
-</ul>
-<ul>
-<li>Now open your bowser with the link <a href="http://127.0.0.1:8008">http://127.0.0.1:8008</a></li>
 </ul>
 
 </div>
