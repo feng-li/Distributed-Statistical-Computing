@@ -10,5 +10,4 @@ zip:
 	git archive --output=distcomp-slides.zip HEAD
 
 sync:
-	git checkout-index -a -f --prefix=${HOME}/nextcloud/feng.li/distcomp/
-	rsync -av distcomp-slides.zip ${HOME}/nextcloud/feng.li/distcomp/
+	rsync -av --delete-excluded --prune-empty-dirs --include '*/' --include '*slides.zip'  --include '*.ipynb' --include '*.slides.html' --include 'figures/*'  --exclude '*' .  ${HOME}/nextcloud/feng.li/distcomp/
