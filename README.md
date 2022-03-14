@@ -29,7 +29,7 @@
 
 #### Quick View
 
-You coud view all the notebooks in this repository via the [Jupyter Notebook Viewer](https://nbviewer.jupyter.org/github/feng-li/Distributed-Statistical-Computing)
+You could view all the notebooks in this repository via the [Jupyter Notebook Viewer](https://nbviewer.jupyter.org/github/feng-li/Distributed-Statistical-Computing)
 
 #### Run the demo locally
 Requirements to run the notebook interactively
@@ -46,11 +46,11 @@ Requirements to run the notebook interactively
 
     - [RISE](https://github.com/damianavila/RISE) (for Jupyter slides)
 
-        Use `Alt+R` to enter sildeshow mode
+        Use `Alt+R` to enter slideshow mode
 
     - [Bash Kernel](https://github.com/takluyver/bash_kernel) (for Linux and Hadoop, Hive, Spark batch mode)
     - [IPython kernel for Python 3](https://ipython.readthedocs.io/en/latest/install/kernel_install.html) (for Interactive PySpark Sessions)
     - [HiveQL Kernel](https://github.com/EDS-APHP/HiveQLKernel) (for Interactive Hive Sessions)
     - [Spark Toree](https://toree.apache.org/docs/current/user/quick-start/) (for Interactive Spark Scala Sessions)
 
-### [Distributed Statistical Computiong Cases](https://github.com/feng-li/Distributed-Statistical-Computing/tree/master/book-examples) in markdown and tex format  (out dated).
+### [Distributed Statistical Computing Cases](https://github.com/feng-li/Distributed-Statistical-Computing/tree/master/book-examples) in markdown and tex format  (out dated).
