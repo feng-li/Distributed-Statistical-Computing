@@ -14161,19 +14161,11 @@ div.jp-OutputPrompt {
 <h2 id="Linear-Regression">Linear Regression<a class="anchor-link" href="#Linear-Regression">&#182;</a></h2><ul>
 <li><p>Assume we have data set contains both $y_{n\times 1}$ and $X_{n\times p}$.</p>
 </li>
-<li><p>The linear model</p>
-<p>\begin{equation*}</p>
-
-<pre><code>y=X\beta +\epsilon
-</code></pre>
-<p>\end{equation*}</p>
-<p>yields the following solution to $\widehat \beta$</p>
-<p>\begin{equation*}</p>
-
-<pre><code>\widehat\beta = (X'X)^{-1}X'y
-</code></pre>
-<p>\end{equation*}</p>
+<li><p>The linear model $y=X\beta +\epsilon$ yields the following solution to $\widehat \beta$</p>
+<p>$ \hat\beta = (X'X)^{-1}X'y $</p>
 </li>
+</ul>
+<ul>
 <li><p>The Big Data problem: $n&gt;&gt;p$</p>
 <ul>
 <li>The calculations of $X'X$ and $X'y$ is very computational demanding.</li>
@@ -14242,18 +14234,10 @@ y = \sum_{i=1}^n x_{i.}'y
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Logistic-Regression:-The-Model">Logistic Regression: The Model<a class="anchor-link" href="#Logistic-Regression:-The-Model">&#182;</a></h2><ul>
 <li><p>The logit model connects the explanatory variables in this way</p>
-<p>\begin{equation*}</p>
-
-<pre><code>P_i=\frac{1}{1+\exp(-(\beta_1+\beta_2X_i))}
-</code></pre>
-<p>\end{equation*}</p>
+<p>$P_i=\frac{1}{1+\exp(-(\beta_1+\beta_2X_i))}$</p>
 </li>
 <li><p>Alternatively we can write the model in this way</p>
-<p>\begin{equation*}</p>
-
-<pre><code>\log \frac{P_i}{1-P_i} = \beta_1+\beta_2X_i
-</code></pre>
-<p>\end{equation*}</p>
+<p>$\log \frac{P_i}{1-P_i} = \beta_1+\beta_2X_i$</p>
 <p>where $P_i/(1-P_i)$ is called \textbf{odds ratio}: the ratio of probability
   of a family will own a house to the probability of not owing a house.</p>
 </li>
@@ -14300,17 +14284,15 @@ y = \sum_{i=1}^n x_{i.}'y
 <li><p>Divide $n$ sample into $k$ blocks that each block consists of $m$ observations。</p>
 </li>
 <li><p>Do logistic regression with each block on a single node.</p>
-<p>\begin{equation*}</p>
-
-<pre><code>  \widehat \beta_l = \arg~\max \sum _{i =1}^m \{ y_{li}x_{li}'\beta-\log(1+\exp\{x_i'\beta\})\}.
-\end{equation*}</code></pre>
+<p>$\widehat \beta_l = \arg~\max \sum _{i =1}^m \{ y_{li}x_{li}'\beta-\log(1+\exp\{x_i'\beta\})\}.$</p>
 </li>
 <li><p>The Full Logistic Regression model with coefficients</p>
 <ul>
-<li>$\widehat \beta$ can be approximated by weighted average of $\widehat \beta_l$
-\begin{equation*}
+<li><p>$\widehat \beta$ can be approximated by weighted average of $\widehat \beta_l$</p>
+<p>$
   \widehat \beta = \frac{1}{k}\sum_{l=1}^k \widehat \beta_l.
-\end{equation*}</li>
+$</p>
+</li>
 </ul>
 </li>
 </ul>
