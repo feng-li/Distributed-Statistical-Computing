@@ -65,11 +65,11 @@ if( window.location.search.match( /print-pdf/gi ) ) {
     <!-- End of mathjax configuration -->
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14134,7 +14134,7 @@ div.jp-OutputPrompt {
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Hive-Batch">Hive Batch<a class="anchor-link" href="#Hive-Batch">&#182;</a></h3><ul>
+<h3 id="Hive-Batch-(old-API)">Hive Batch (old API)<a class="anchor-link" href="#Hive-Batch-(old-API)">&#182;</a></h3><ul>
 <li><p>Run hive commands from the termial</p>
 <p>$ hive -e "dfs -ls /;"</p>
 </li>
@@ -14147,7 +14147,7 @@ div.jp-OutputPrompt {
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Hive-Interactive">Hive Interactive<a class="anchor-link" href="#Hive-Interactive">&#182;</a></h2><ul>
+<h2 id="Hive-Interactive-(old-API)">Hive Interactive (old API)<a class="anchor-link" href="#Hive-Interactive-(old-API)">&#182;</a></h2><ul>
 <li><p>Start Hive from a Terminal</p>
 <p>$ hive</p>
 </li>
@@ -14208,7 +14208,20 @@ Connection established to database!
 <p>Then you are in Hive Shell. You chould try HDFS commands as</p>
 
 </div>
-</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Apache-Beeline-client-with-Apache-HiveServer2">Apache Beeline client with Apache HiveServer2<a class="anchor-link" href="#Apache-Beeline-client-with-Apache-HiveServer2">&#182;</a></h2><ul>
+<li>Beeline is a Hive client for runing Hive query and it also works with HiveQL file.</li>
+</ul>
+<ul>
+<li>Beeline uses JDBC to connect to HiveServer2.</li>
+</ul>
+
+<pre><code>    beeline -u jdbc:hive2://$HIVESERVER2_HOST:$HIVESERVER2_PORT</code></pre>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>

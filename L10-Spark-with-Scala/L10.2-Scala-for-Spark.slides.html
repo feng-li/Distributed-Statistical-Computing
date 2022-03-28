@@ -65,11 +65,11 @@ if( window.location.search.match( /print-pdf/gi ) ) {
     <!-- End of mathjax configuration -->
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14118,7 +14118,7 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">breeze.linalg._</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">breeze</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="n">_</span>
 </pre></div>
 
      </div>
@@ -14132,7 +14132,7 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">x</span> <span class="o">=</span> <span class="nc">DenseVector</span><span class="o">.</span><span class="n">zeros</span><span class="o">[</span><span class="kt">Double</span><span class="o">](</span><span class="mi">5</span><span class="o">)</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="kd">val</span> <span class="n">x</span> <span class="o">=</span> <span class="nc">DenseVector</span><span class="p">.</span><span class="n">zeros</span><span class="p">[</span><span class="nc">Double</span><span class="p">](</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14189,14 +14189,14 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.ml.linalg.</span><span class="o">{</span><span class="nc">Vector</span><span class="o">,</span> <span class="nc">Vectors</span><span class="o">}</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">ml</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.{</span><span class="nc">Vector</span><span class="p">,</span> <span class="nc">Vectors</span><span class="p">}</span>
 
 <span class="c1">// Create a dense vector (1.0, 0.0, 3.0).</span>
-<span class="k">val</span> <span class="n">dv</span><span class="k">:</span> <span class="kt">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="o">(</span><span class="mf">1.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">dv</span><span class="p">:</span> <span class="nc">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
 <span class="c1">// Create a sparse vector (1.0, 0.0, 3.0) by specifying its indices and values corresponding to nonzero entries.</span>
-<span class="k">val</span> <span class="n">sv1</span><span class="k">:</span> <span class="kt">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="nc">Array</span><span class="o">(</span><span class="mf">1.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">))</span>
+<span class="kd">val</span> <span class="n">sv1</span><span class="p">:</span> <span class="nc">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="p">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nc">Array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nc">Array</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
 <span class="c1">// Create a sparse vector (1.0, 0.0, 3.0) by specifying its nonzero entries.</span>
-<span class="k">val</span> <span class="n">sv2</span><span class="k">:</span> <span class="kt">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">((</span><span class="mi">0</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">),</span> <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">)))</span>
+<span class="kd">val</span> <span class="n">sv2</span><span class="p">:</span> <span class="nc">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="p">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nc">Seq</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)))</span>
 </pre></div>
 
      </div>
@@ -14250,14 +14250,14 @@ sv2 = (3,[0,2],[1.0,3.0])
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.mllib.linalg.Vectors</span>
-<span class="k">import</span> <span class="nn">org.apache.spark.mllib.regression.LabeledPoint</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="nc">Vectors</span>
+<span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">regression</span><span class="p">.</span><span class="nc">LabeledPoint</span>
 
 <span class="c1">// Create a labeled point with a positive label and a dense feature vector.</span>
-<span class="k">val</span> <span class="n">pos</span> <span class="o">=</span> <span class="nc">LabeledPoint</span><span class="o">(</span><span class="mf">1.0</span><span class="o">,</span> <span class="nc">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="o">(</span><span class="mf">1.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">))</span>
+<span class="kd">val</span> <span class="n">pos</span> <span class="o">=</span> <span class="nc">LabeledPoint</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nc">Vectors</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
 
 <span class="c1">// Create a labeled point with a negative label and a sparse feature vector.</span>
-<span class="k">val</span> <span class="n">neg</span> <span class="o">=</span> <span class="nc">LabeledPoint</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="nc">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="nc">Array</span><span class="o">(</span><span class="mf">1.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">)))</span>
+<span class="kd">val</span> <span class="n">neg</span> <span class="o">=</span> <span class="nc">LabeledPoint</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nc">Vectors</span><span class="p">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nc">Array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nc">Array</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)))</span>
 </pre></div>
 
      </div>
@@ -14310,13 +14310,13 @@ neg = (0.0,(3,[0,2],[1.0,3.0]))
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.ml.linalg.</span><span class="o">{</span><span class="nc">Matrix</span><span class="o">,</span> <span class="nc">Matrices</span><span class="o">}</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">ml</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.{</span><span class="nc">Matrix</span><span class="p">,</span> <span class="nc">Matrices</span><span class="p">}</span>
 
 <span class="c1">// Create a dense matrix ((1.0, 2.0), (3.0, 4.0), (5.0, 6.0))</span>
-<span class="k">val</span> <span class="n">dm</span><span class="k">:</span> <span class="kt">Matrix</span> <span class="o">=</span> <span class="nc">Matrices</span><span class="o">.</span><span class="n">dense</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="nc">Array</span><span class="o">(</span><span class="mf">1.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">,</span> <span class="mf">5.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">4.0</span><span class="o">,</span> <span class="mf">6.0</span><span class="o">))</span>
+<span class="kd">val</span> <span class="n">dm</span><span class="p">:</span> <span class="nc">Matrix</span> <span class="o">=</span> <span class="nc">Matrices</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nc">Array</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">))</span>
 
 <span class="c1">// Create a sparse matrix ((9.0, 0.0), (0.0, 8.0), (0.0, 6.0))</span>
-<span class="k">val</span> <span class="n">sm</span><span class="k">:</span> <span class="kt">Matrix</span> <span class="o">=</span> <span class="nc">Matrices</span><span class="o">.</span><span class="n">sparse</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">8</span><span class="o">))</span>
+<span class="kd">val</span> <span class="n">sm</span><span class="p">:</span> <span class="nc">Matrix</span> <span class="o">=</span> <span class="nc">Matrices</span><span class="p">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nc">Array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nc">Array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nc">Array</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14389,19 +14389,19 @@ sm =
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.mllib.linalg.Vector</span>
-<span class="k">import</span> <span class="nn">org.apache.spark.mllib.linalg.distributed.RowMatrix</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="nc">Vector</span>
+<span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="nn">distributed</span><span class="p">.</span><span class="nc">RowMatrix</span>
 
-<span class="k">val</span> <span class="n">rows</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">Vector</span><span class="o">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// an RDD of local vectors</span>
+<span class="kd">val</span> <span class="n">rows</span><span class="p">:</span> <span class="nc">RDD</span><span class="p">[</span><span class="nc">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// an RDD of local vectors</span>
 <span class="c1">// Create a RowMatrix from an RDD[Vector].</span>
-<span class="k">val</span> <span class="n">mat</span><span class="k">:</span> <span class="kt">RowMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RowMatrix</span><span class="o">(</span><span class="n">rows</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">mat</span><span class="p">:</span> <span class="nc">RowMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RowMatrix</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 
 <span class="c1">// Get its size.</span>
-<span class="k">val</span> <span class="n">m</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">numRows</span><span class="o">()</span>
-<span class="k">val</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">numCols</span><span class="o">()</span>
+<span class="kd">val</span> <span class="n">m</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">numRows</span><span class="p">()</span>
+<span class="kd">val</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">numCols</span><span class="p">()</span>
 
 <span class="c1">// QR decomposition </span>
-<span class="k">val</span> <span class="n">qrResult</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">tallSkinnyQR</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">qrResult</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">tallSkinnyQR</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14415,18 +14415,18 @@ sm =
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.mllib.linalg.distributed.</span><span class="o">{</span><span class="nc">IndexedRow</span><span class="o">,</span> <span class="nc">IndexedRowMatrix</span><span class="o">,</span> <span class="nc">RowMatrix</span><span class="o">}</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="nn">distributed</span><span class="p">.{</span><span class="nc">IndexedRow</span><span class="p">,</span> <span class="nc">IndexedRowMatrix</span><span class="p">,</span> <span class="nc">RowMatrix</span><span class="p">}</span>
 
-<span class="k">val</span> <span class="n">rows</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">IndexedRow</span><span class="o">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// an RDD of indexed rows</span>
+<span class="kd">val</span> <span class="n">rows</span><span class="p">:</span> <span class="nc">RDD</span><span class="p">[</span><span class="nc">IndexedRow</span><span class="p">]</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// an RDD of indexed rows</span>
 <span class="c1">// Create an IndexedRowMatrix from an RDD[IndexedRow].</span>
-<span class="k">val</span> <span class="n">mat</span><span class="k">:</span> <span class="kt">IndexedRowMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">IndexedRowMatrix</span><span class="o">(</span><span class="n">rows</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">mat</span><span class="p">:</span> <span class="nc">IndexedRowMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">IndexedRowMatrix</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 
 <span class="c1">// Get its size.</span>
-<span class="k">val</span> <span class="n">m</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">numRows</span><span class="o">()</span>
-<span class="k">val</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">numCols</span><span class="o">()</span>
+<span class="kd">val</span> <span class="n">m</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">numRows</span><span class="p">()</span>
+<span class="kd">val</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">numCols</span><span class="p">()</span>
 
 <span class="c1">// Drop its row indices.</span>
-<span class="k">val</span> <span class="n">rowMat</span><span class="k">:</span> <span class="kt">RowMatrix</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">toRowMatrix</span><span class="o">()</span>
+<span class="kd">val</span> <span class="n">rowMat</span><span class="p">:</span> <span class="nc">RowMatrix</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">toRowMatrix</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14440,18 +14440,18 @@ sm =
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.mllib.linalg.distributed.</span><span class="o">{</span><span class="nc">CoordinateMatrix</span><span class="o">,</span> <span class="nc">MatrixEntry</span><span class="o">}</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="nn">distributed</span><span class="p">.{</span><span class="nc">CoordinateMatrix</span><span class="p">,</span> <span class="nc">MatrixEntry</span><span class="p">}</span>
 
-<span class="k">val</span> <span class="n">entries</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">MatrixEntry</span><span class="o">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// an RDD of matrix entries</span>
+<span class="kd">val</span> <span class="n">entries</span><span class="p">:</span> <span class="nc">RDD</span><span class="p">[</span><span class="nc">MatrixEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// an RDD of matrix entries</span>
 <span class="c1">// Create a CoordinateMatrix from an RDD[MatrixEntry].</span>
-<span class="k">val</span> <span class="n">mat</span><span class="k">:</span> <span class="kt">CoordinateMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CoordinateMatrix</span><span class="o">(</span><span class="n">entries</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">mat</span><span class="p">:</span> <span class="nc">CoordinateMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CoordinateMatrix</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
 
 <span class="c1">// Get its size.</span>
-<span class="k">val</span> <span class="n">m</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">numRows</span><span class="o">()</span>
-<span class="k">val</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">numCols</span><span class="o">()</span>
+<span class="kd">val</span> <span class="n">m</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">numRows</span><span class="p">()</span>
+<span class="kd">val</span> <span class="n">n</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">numCols</span><span class="p">()</span>
 
 <span class="c1">// Convert it to an IndexRowMatrix whose rows are sparse vectors.</span>
-<span class="k">val</span> <span class="n">indexedRowMatrix</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">toIndexedRowMatrix</span><span class="o">()</span>
+<span class="kd">val</span> <span class="n">indexedRowMatrix</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">toIndexedRowMatrix</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14465,20 +14465,20 @@ sm =
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.mllib.linalg.distributed.</span><span class="o">{</span><span class="nc">BlockMatrix</span><span class="o">,</span> <span class="nc">CoordinateMatrix</span><span class="o">,</span> <span class="nc">MatrixEntry</span><span class="o">}</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org</span><span class="p">.</span><span class="nn">apache</span><span class="p">.</span><span class="nn">spark</span><span class="p">.</span><span class="nn">mllib</span><span class="p">.</span><span class="nn">linalg</span><span class="p">.</span><span class="nn">distributed</span><span class="p">.{</span><span class="nc">BlockMatrix</span><span class="p">,</span> <span class="nc">CoordinateMatrix</span><span class="p">,</span> <span class="nc">MatrixEntry</span><span class="p">}</span>
 
-<span class="k">val</span> <span class="n">entries</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">MatrixEntry</span><span class="o">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// an RDD of (i, j, v) matrix entries</span>
+<span class="kd">val</span> <span class="n">entries</span><span class="p">:</span> <span class="nc">RDD</span><span class="p">[</span><span class="nc">MatrixEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// an RDD of (i, j, v) matrix entries</span>
 <span class="c1">// Create a CoordinateMatrix from an RDD[MatrixEntry].</span>
-<span class="k">val</span> <span class="n">coordMat</span><span class="k">:</span> <span class="kt">CoordinateMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CoordinateMatrix</span><span class="o">(</span><span class="n">entries</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">coordMat</span><span class="p">:</span> <span class="nc">CoordinateMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CoordinateMatrix</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
 <span class="c1">// Transform the CoordinateMatrix to a BlockMatrix</span>
-<span class="k">val</span> <span class="n">matA</span><span class="k">:</span> <span class="kt">BlockMatrix</span> <span class="o">=</span> <span class="n">coordMat</span><span class="o">.</span><span class="n">toBlockMatrix</span><span class="o">().</span><span class="n">cache</span><span class="o">()</span>
+<span class="kd">val</span> <span class="n">matA</span><span class="p">:</span> <span class="nc">BlockMatrix</span> <span class="o">=</span> <span class="n">coordMat</span><span class="p">.</span><span class="n">toBlockMatrix</span><span class="p">().</span><span class="n">cache</span><span class="p">()</span>
 
 <span class="c1">// Validate whether the BlockMatrix is set up properly. Throws an Exception when it is not valid.</span>
 <span class="c1">// Nothing happens if it is valid.</span>
-<span class="n">matA</span><span class="o">.</span><span class="n">validate</span><span class="o">()</span>
+<span class="n">matA</span><span class="p">.</span><span class="n">validate</span><span class="p">()</span>
 
 <span class="c1">// Calculate A^T A.</span>
-<span class="k">val</span> <span class="n">ata</span> <span class="o">=</span> <span class="n">matA</span><span class="o">.</span><span class="n">transpose</span><span class="o">.</span><span class="n">multiply</span><span class="o">(</span><span class="n">matA</span><span class="o">)</span>
+<span class="kd">val</span> <span class="n">ata</span> <span class="o">=</span> <span class="n">matA</span><span class="p">.</span><span class="n">transpose</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">matA</span><span class="p">)</span>
 </pre></div>
 
      </div>
