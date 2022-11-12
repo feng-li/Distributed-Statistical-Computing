@@ -7,11 +7,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>L07.1-Machine-Learning-with-Spark slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>L07.1-Machine-Learning-with-Spark slides</title><script src="file:///usr/share/javascript/jquery/jquery.min.js"></script><script src="file:///usr/share/javascript/requirejs/require.min.js"></script>
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css">
-<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/theme/solarized.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -22,47 +21,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
 </script>
-
-<!-- Loading the mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML-full,Safe"> </script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    init_mathjax = function() {
-        if (window.MathJax) {
-        // MathJax loaded
-            MathJax.Hub.Config({
-                TeX: {
-                    equationNumbers: {
-                    autoNumber: "AMS",
-                    useLabelIds: true
-                    }
-                },
-                tex2jax: {
-                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                    processEscapes: true,
-                    processEnvironments: true
-                },
-                displayAlign: 'center',
-                CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
-                    }
-                },
-                "HTML-CSS": {
-                    linebreaks: { 
-                    automatic: true 
-                    }
-                }
-            });
-        
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        }
-    }
-    init_mathjax();
-    </script>
-    <!-- End of mathjax configuration -->
 
 <style type="text/css">
     pre { line-height: 125%; }
@@ -13988,6 +13946,9 @@ a.anchor-link {
 .reveal {
   font-size: 160%;
 }
+.reveal table {
+  font-size: var(--jp-ui-font-size1);
+}
 .reveal pre {
   width: inherit;
   padding: 0.4em;
@@ -14002,11 +13963,6 @@ a.anchor-link {
 .reveal section img {
   border: 0px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal i {
-  font-style: normal;
-  font-family: FontAwesome;
-  font-size: 2em;
 }
 .reveal .slides {
   text-align: left;
@@ -14034,6 +13990,23 @@ div.output_area pre {
 div.jp-OutputPrompt {
   /* 5px right shift to account for margin in parent container */
   margin: 5px 5px 0 0;
+}
+
+.reveal div.highlight {
+  margin: 0;
+}
+
+.reveal div.highlight > pre {
+  margin: 0;
+  width: 100%;
+  font-size: var(--jp-code-font-size);
+}
+
+.reveal div.jp-OutputArea-output > pre {
+  margin: 0;
+  width: 90%;
+  font-size: var(--jp-code-font-size);
+  box-shadow: none;
 }
 
 /* Reveal navigation controls */
@@ -14076,20 +14049,53 @@ div.jp-OutputPrompt {
 
 /* Scrollbars */
 
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-::-webkit-scrollbar *
-{
-  background:transparent;
+::-webkit-scrollbar * {
+  background: transparent;
 }
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
   background: #727272 !important;
 }
 </style>
+
+<!-- Load mathjax -->
+    <script src="file:///usr/share/javascript/mathjax/MathJax.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    init_mathjax = function() {
+        if (window.MathJax) {
+        // MathJax loaded
+            MathJax.Hub.Config({
+                TeX: {
+                    equationNumbers: {
+                    autoNumber: "AMS",
+                    useLabelIds: true
+                    }
+                },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                CommonHTML: {
+                    linebreaks: {
+                    automatic: true
+                    }
+                }
+            });
+
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    }
+    init_mathjax();
+    </script>
+    <!-- End of mathjax configuration --><!-- Reveal Theme -->
+<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/theme/solarized.css" id="theme">
 
 </head>
 
@@ -14097,12 +14103,22 @@ div.jp-OutputPrompt {
 
 <div class="reveal">
 <div class="slides"><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Machine-Learning-with-Spark">Machine Learning with Spark<a class="anchor-link" href="#Machine-Learning-with-Spark">&#182;</a></h1><h2 id="Feng-Li">Feng Li<a class="anchor-link" href="#Feng-Li">&#182;</a></h2><h3 id="Central-University-of-Finance-and-Economics">Central University of Finance and Economics<a class="anchor-link" href="#Central-University-of-Finance-and-Economics">&#182;</a></h3><h3 id="feng.li@cufe.edu.cn"><a href="feng.li@cufe.edu.cn">feng.li@cufe.edu.cn</a><a class="anchor-link" href="#feng.li@cufe.edu.cn">&#182;</a></h3><h3 id="Course-home-page:-https://feng.li/distcomp">Course home page: <a href="https://feng.li/distcomp">https://feng.li/distcomp</a><a class="anchor-link" href="#Course-home-page:-https://feng.li/distcomp">&#182;</a></h3>
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Machine-Learning-Library">Machine Learning Library<a class="anchor-link" href="#Machine-Learning-Library">&#182;</a></h2><p>MLlib is Spark’s machine learning (ML) library. Its goal is to make practical machine learning scalable and easy. At a high level, it provides tools such as:</p>
 <ul>
@@ -14114,8 +14130,14 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="MLlib-APIs">MLlib APIs<a class="anchor-link" href="#MLlib-APIs">&#182;</a></h2><ul>
 <li><p>The RDD-based APIs in the <code>spark.mllib</code> package have entered maintenance mode.</p>
@@ -14135,21 +14157,31 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Start-a-Spark-Session">Start a Spark Session<a class="anchor-link" href="#Start-a-Spark-Session">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">findspark</span>
-<span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s1">&#39;/usr/lib/spark-current&#39;</span><span class="p">)</span>
+<span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s1">'/usr/lib/spark-current'</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;Python Spark with ML&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">"Python Spark with ML"</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 <span class="n">spark</span>
 </pre></div>
 
@@ -14159,6 +14191,8 @@ div.jp-OutputPrompt {
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14201,7 +14235,11 @@ div.jp-OutputPrompt {
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Correlation">Correlation<a class="anchor-link" href="#Correlation">&#182;</a></h2><ul>
 <li><p>Calculating the correlation between two series of data is a common operation in Statistics.</p>
@@ -14211,8 +14249,12 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14224,13 +14266,13 @@ div.jp-OutputPrompt {
         <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]),),</span>
         <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]),),</span>
         <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]),)]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">"features"</span><span class="p">])</span>
 
-<span class="n">r1</span> <span class="o">=</span> <span class="n">Correlation</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pearson correlation matrix:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">Correlation</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pearson correlation matrix:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">r2</span> <span class="o">=</span> <span class="n">Correlation</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;spearman&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Spearman correlation matrix:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">Correlation</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">,</span> <span class="s2">"spearman"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Spearman correlation matrix:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 
      </div>
@@ -14239,6 +14281,8 @@ div.jp-OutputPrompt {
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14269,7 +14313,11 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 </div>
 
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Summarizer">Summarizer<a class="anchor-link" href="#Summarizer">&#182;</a></h2><ul>
 <li><p>The <code>spark.ml</code> provides vector column summary statistics for Dataframe through Summarizer.</p>
@@ -14279,8 +14327,12 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14295,6 +14347,8 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14306,8 +14360,8 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 <span class="n">df</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
                      <span class="n">Row</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
 
-<span class="c1"># create summarizer for multiple metrics &quot;mean&quot; and &quot;count&quot;</span>
-<span class="n">summarizer</span> <span class="o">=</span> <span class="n">Summarizer</span><span class="o">.</span><span class="n">metrics</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">)</span>
+<span class="c1"># create summarizer for multiple metrics "mean" and "count"</span>
+<span class="n">summarizer</span> <span class="o">=</span> <span class="n">Summarizer</span><span class="o">.</span><span class="n">metrics</span><span class="p">(</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"count"</span><span class="p">)</span>
 
 <span class="c1"># compute statistics for multiple metrics with weight</span>
 <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">summarizer</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">weight</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -14315,10 +14369,10 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 <span class="c1"># compute statistics for multiple metrics without weight</span>
 <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">summarizer</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">features</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># compute statistics for single metric &quot;mean&quot; with weight</span>
+<span class="c1"># compute statistics for single metric "mean" with weight</span>
 <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">Summarizer</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">weight</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># compute statistics for single metric &quot;mean&quot; without weight</span>
+<span class="c1"># compute statistics for single metric "mean" without weight</span>
 <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">Summarizer</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">features</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
@@ -14328,6 +14382,8 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14372,7 +14428,11 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Machine-Learning-Pipelines">Machine Learning Pipelines<a class="anchor-link" href="#Machine-Learning-Pipelines">&#182;</a></h2><ul>
 <li><p>MLlib standardizes APIs for machine learning algorithms to make it easier to combine multiple algorithms into a single pipeline, or workflow.</p>
@@ -14394,19 +14454,35 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><img src="./figures/ml-Pipeline.png" alt="Pipline"></p>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Pipline-example:-Logistic-Regression">Pipline example: Logistic Regression<a class="anchor-link" href="#Pipline-example:-Logistic-Regression">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14419,14 +14495,14 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
     <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])),</span>
     <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">])),</span>
     <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])),</span>
-    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]))],</span> <span class="p">[</span><span class="s2">"label"</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">])</span>
 
 
 <span class="c1"># Prepare test data</span>
 <span class="n">test</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
     <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">])),</span>
     <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">])),</span>
-    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">]))],</span> <span class="p">[</span><span class="s2">"label"</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14436,6 +14512,8 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14443,7 +14521,7 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a LogisticRegression instance. This instance is an Estimator.</span>
 <span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="c1"># Print out the parameters, documentation, and any default values.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LogisticRegression parameters:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">lr</span><span class="o">.</span><span class="n">explainParams</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"LogisticRegression parameters:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">lr</span><span class="o">.</span><span class="n">explainParams</span><span class="p">()</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14452,6 +14530,8 @@ DenseMatrix([[1.        , 0.10540926,        nan, 0.4       ],
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14495,6 +14575,8 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14506,7 +14588,7 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 <span class="c1"># we can view the parameters it used during fit().</span>
 <span class="c1"># This prints the parameter (name: value) pairs, where names are unique IDs for this</span>
 <span class="c1"># LogisticRegression instance.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model 1 was fit using parameters: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Model 1 was fit using parameters: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model1</span><span class="o">.</span><span class="n">extractParamMap</span><span class="p">())</span>
 </pre></div>
 
@@ -14516,6 +14598,8 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14539,6 +14623,8 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14549,14 +14635,14 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 <span class="n">paramMap</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span> <span class="mf">0.55</span><span class="p">})</span>  <span class="c1"># Specify multiple Params.</span>
 
 <span class="c1"># You can combine paramMaps, which are python dictionaries.</span>
-<span class="n">paramMap2</span> <span class="o">=</span> <span class="p">{</span><span class="n">lr</span><span class="o">.</span><span class="n">probabilityCol</span><span class="p">:</span> <span class="s2">&quot;myProbability&quot;</span><span class="p">}</span>  <span class="c1"># Change output column name</span>
+<span class="n">paramMap2</span> <span class="o">=</span> <span class="p">{</span><span class="n">lr</span><span class="o">.</span><span class="n">probabilityCol</span><span class="p">:</span> <span class="s2">"myProbability"</span><span class="p">}</span>  <span class="c1"># Change output column name</span>
 <span class="n">paramMapCombined</span> <span class="o">=</span> <span class="n">paramMap</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">paramMapCombined</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramMap2</span><span class="p">)</span>
 
 <span class="c1"># Now learn a new model using the paramMapCombined parameters.</span>
 <span class="c1"># paramMapCombined overrides all parameters set earlier via lr.set* methods.</span>
 <span class="n">model2</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">paramMapCombined</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model 2 was fit using parameters: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Model 2 was fit using parameters: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">extractParamMap</span><span class="p">())</span>
 </pre></div>
 
@@ -14566,6 +14652,8 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14589,20 +14677,22 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make predictions on test data using the Transformer.transform() method.</span>
-<span class="c1"># LogisticRegression.transform will only use the &#39;features&#39; column.</span>
-<span class="c1"># Note that model2.transform() outputs a &quot;myProbability&quot; column instead of the usual</span>
-<span class="c1"># &#39;probability&#39; column since we renamed the lr.probabilityCol parameter previously.</span>
+<span class="c1"># LogisticRegression.transform will only use the 'features' column.</span>
+<span class="c1"># Note that model2.transform() outputs a "myProbability" column instead of the usual</span>
+<span class="c1"># 'probability' column since we renamed the lr.probabilityCol parameter previously.</span>
 <span class="n">prediction</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;myProbability&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span> \
+<span class="n">result</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"features"</span><span class="p">,</span> <span class="s2">"label"</span><span class="p">,</span> <span class="s2">"myProbability"</span><span class="p">,</span> <span class="s2">"prediction"</span><span class="p">)</span> \
     <span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;features=</span><span class="si">%s</span><span class="s2">, label=</span><span class="si">%s</span><span class="s2"> -&gt; prob=</span><span class="si">%s</span><span class="s2">, prediction=</span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"features=</span><span class="si">%s</span><span class="s2">, label=</span><span class="si">%s</span><span class="s2"> -&gt; prob=</span><span class="si">%s</span><span class="s2">, prediction=</span><span class="si">%s</span><span class="s2">"</span>
           <span class="o">%</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">myProbability</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">prediction</span><span class="p">))</span>
 </pre></div>
 
@@ -14612,6 +14702,8 @@ weightCol: weight column name. If this is not set or empty, we treat all instanc
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14635,12 +14727,20 @@ features=[0.0,2.2,-1.5], label=1.0 -&gt; prob=[0.10972776114779727,0.89027223885
 </div>
 
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Pipline-example:-Decision-tree-classifier">Pipline example: Decision tree classifier<a class="anchor-link" href="#Pipline-example:-Decision-tree-classifier">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14651,15 +14751,15 @@ features=[0.0,2.2,-1.5], label=1.0 -&gt; prob=[0.10972776114779727,0.89027223885
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
 
 <span class="c1"># Load the data stored in LIBSVM format as a DataFrame.</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;libsvm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;/opt/apps/ecm/service/spark/2.4.4/package/spark-2.4.4-bin-hadoop2.7/data/mllib/sample_libsvm_data.txt&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">"libsvm"</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"/opt/apps/ecm/service/spark/2.4.4/package/spark-2.4.4-bin-hadoop2.7/data/mllib/sample_libsvm_data.txt"</span><span class="p">)</span>
 
 <span class="c1"># Index labels, adding metadata to the label column.</span>
 <span class="c1"># Fit on whole dataset to include all labels in index.</span>
-<span class="n">labelIndexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;indexedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">labelIndexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">"label"</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">"indexedLabel"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="c1"># Automatically identify categorical features, and index them.</span>
 <span class="c1"># We specify maxCategories so features with &gt; 4 distinct values are treated as continuous.</span>
 <span class="n">featureIndexer</span> <span class="o">=</span>\
-    <span class="n">VectorIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;indexedFeatures&quot;</span><span class="p">,</span> <span class="n">maxCategories</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">VectorIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">"features"</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">"indexedFeatures"</span><span class="p">,</span> <span class="n">maxCategories</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="c1"># Split the data into training and test sets (30% held out for testing)</span>
 <span class="p">(</span><span class="n">trainingData</span><span class="p">,</span> <span class="n">testData</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
@@ -14672,12 +14772,14 @@ features=[0.0,2.2,-1.5], label=1.0 -&gt; prob=[0.10972776114779727,0.89027223885
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Train a DecisionTree model.</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;indexedLabel&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;indexedFeatures&quot;</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">"indexedLabel"</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">"indexedFeatures"</span><span class="p">)</span>
 
 <span class="c1"># Chain indexers and tree in a Pipeline</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">labelIndexer</span><span class="p">,</span> <span class="n">featureIndexer</span><span class="p">,</span> <span class="n">dt</span><span class="p">])</span>
@@ -14693,6 +14795,8 @@ features=[0.0,2.2,-1.5], label=1.0 -&gt; prob=[0.10972776114779727,0.89027223885
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14701,13 +14805,13 @@ features=[0.0,2.2,-1.5], label=1.0 -&gt; prob=[0.10972776114779727,0.89027223885
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">testData</span><span class="p">)</span>
 
 <span class="c1"># Select example rows to display.</span>
-<span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="s2">&quot;indexedLabel&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"prediction"</span><span class="p">,</span> <span class="s2">"indexedLabel"</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># Select (prediction, true label) and compute test error</span>
 <span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span>
-    <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;indexedLabel&quot;</span><span class="p">,</span> <span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+    <span class="n">labelCol</span><span class="o">=</span><span class="s2">"indexedLabel"</span><span class="p">,</span> <span class="n">predictionCol</span><span class="o">=</span><span class="s2">"prediction"</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">"accuracy"</span><span class="p">)</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Error = </span><span class="si">%g</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Test Error = </span><span class="si">%g</span><span class="s2"> "</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">))</span>
 
 <span class="n">treeModel</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="c1"># summary only</span>
@@ -14720,6 +14824,8 @@ features=[0.0,2.2,-1.5], label=1.0 -&gt; prob=[0.10972776114779727,0.89027223885
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14753,12 +14859,20 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 </div>
 
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Pipline-example:-Clustering">Pipline example: Clustering<a class="anchor-link" href="#Pipline-example:-Clustering">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14767,7 +14881,7 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">ClusteringEvaluator</span>
 
 <span class="c1"># Loads data.</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;libsvm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;/opt/apps/ecm/service/spark/2.4.4/package/spark-2.4.4-bin-hadoop2.7/data/mllib/sample_kmeans_data.txt&quot;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">"libsvm"</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"/opt/apps/ecm/service/spark/2.4.4/package/spark-2.4.4-bin-hadoop2.7/data/mllib/sample_kmeans_data.txt"</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14777,6 +14891,8 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14796,6 +14912,8 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14804,7 +14922,7 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 <span class="n">evaluator</span> <span class="o">=</span> <span class="n">ClusteringEvaluator</span><span class="p">()</span>
 
 <span class="n">silhouette</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silhouette with squared euclidean distance = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">silhouette</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Silhouette with squared euclidean distance = "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">silhouette</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14813,6 +14931,8 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14835,13 +14955,15 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Shows the result.</span>
 <span class="n">centers</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cluster Centers: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Cluster Centers: "</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">center</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
 </pre></div>
@@ -14852,6 +14974,8 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14875,12 +14999,20 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 </div>
 
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Model-Selection-with-Cross-Validation">Model Selection with Cross-Validation<a class="anchor-link" href="#Model-Selection-with-Cross-Validation">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14892,19 +15024,19 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 <span class="c1"># Prepare training documents, which are labeled.</span>
 <span class="n">training</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
-    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;a b c d e spark&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b d&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;spark f g h&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;hadoop mapreduce&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;b spark who&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;g d a y&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;spark fly&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;was mapreduce&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;e spark program&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;a e c l&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;spark compile&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s2">&quot;hadoop software&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="p">],</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"a b c d e spark"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"b d"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"spark f g h"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"hadoop mapreduce"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"b spark who"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"g d a y"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">"spark fly"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">"was mapreduce"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"e spark program"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s2">"a e c l"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">"spark compile"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s2">"hadoop software"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">],</span> <span class="p">[</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">,</span> <span class="s2">"label"</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14914,13 +15046,15 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Configure an ML pipeline, which consists of tree stages: tokenizer, hashingTF, and lr.</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;words&quot;</span><span class="p">)</span>
-<span class="n">hashingTF</span> <span class="o">=</span> <span class="n">HashingTF</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">getOutputCol</span><span class="p">(),</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">"text"</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">"words"</span><span class="p">)</span>
+<span class="n">hashingTF</span> <span class="o">=</span> <span class="n">HashingTF</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">getOutputCol</span><span class="p">(),</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">"features"</span><span class="p">)</span>
 <span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">hashingTF</span><span class="p">,</span> <span class="n">lr</span><span class="p">])</span>
 </pre></div>
@@ -14932,6 +15066,8 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
@@ -14963,21 +15099,23 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 
 </div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare test documents, which are unlabeled.</span>
 <span class="n">test</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
-    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;spark i j k&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;l m n&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;mapreduce spark&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;apache hadoop&quot;</span><span class="p">)</span>
-<span class="p">],</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">])</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"spark i j k"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"l m n"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">"mapreduce spark"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">"apache hadoop"</span><span class="p">)</span>
+<span class="p">],</span> <span class="p">[</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">])</span>
 
 <span class="c1"># Make predictions on test documents. cvModel uses the best model found (lrModel).</span>
 <span class="n">prediction</span> <span class="o">=</span> <span class="n">cvModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-<span class="n">selected</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="n">selected</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">,</span> <span class="s2">"probability"</span><span class="p">,</span> <span class="s2">"prediction"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">selected</span><span class="o">.</span><span class="n">collect</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </pre></div>
@@ -14988,6 +15126,8 @@ DecisionTreeClassificationModel (uid=DecisionTreeClassifier_19583263959e) of dep
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -15012,12 +15152,18 @@ Row(id=7, text=&#39;apache hadoop&#39;, probability=DenseVector([0.6766, 0.3234]
 </div>
 
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Lab">Lab<a class="anchor-link" href="#Lab">&#182;</a></h2><ul>
 <li>Run a logistic regression with airdelay data.</li>
 </ul>
 
+</div>
+</div>
 </div>
 </div></section></section>
 </div>
@@ -15049,6 +15195,7 @@ require(
             progress: true,
             history: true,
             transition: "fade",
+            slideNumber: "",
             plugins: [RevealNotes]
         });
 

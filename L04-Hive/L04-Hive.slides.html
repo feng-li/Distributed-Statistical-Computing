@@ -7,11 +7,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>L04-Hive slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>L04-Hive slides</title><script src="file:///usr/share/javascript/jquery/jquery.min.js"></script><script src="file:///usr/share/javascript/requirejs/require.min.js"></script>
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css">
-<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/theme/solarized.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -22,47 +21,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
 </script>
-
-<!-- Loading the mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML-full,Safe"> </script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    init_mathjax = function() {
-        if (window.MathJax) {
-        // MathJax loaded
-            MathJax.Hub.Config({
-                TeX: {
-                    equationNumbers: {
-                    autoNumber: "AMS",
-                    useLabelIds: true
-                    }
-                },
-                tex2jax: {
-                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                    processEscapes: true,
-                    processEnvironments: true
-                },
-                displayAlign: 'center',
-                CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
-                    }
-                },
-                "HTML-CSS": {
-                    linebreaks: { 
-                    automatic: true 
-                    }
-                }
-            });
-        
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        }
-    }
-    init_mathjax();
-    </script>
-    <!-- End of mathjax configuration -->
 
 <style type="text/css">
     pre { line-height: 125%; }
@@ -13988,6 +13946,9 @@ a.anchor-link {
 .reveal {
   font-size: 160%;
 }
+.reveal table {
+  font-size: var(--jp-ui-font-size1);
+}
 .reveal pre {
   width: inherit;
   padding: 0.4em;
@@ -14002,11 +13963,6 @@ a.anchor-link {
 .reveal section img {
   border: 0px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal i {
-  font-style: normal;
-  font-family: FontAwesome;
-  font-size: 2em;
 }
 .reveal .slides {
   text-align: left;
@@ -14034,6 +13990,23 @@ div.output_area pre {
 div.jp-OutputPrompt {
   /* 5px right shift to account for margin in parent container */
   margin: 5px 5px 0 0;
+}
+
+.reveal div.highlight {
+  margin: 0;
+}
+
+.reveal div.highlight > pre {
+  margin: 0;
+  width: 100%;
+  font-size: var(--jp-code-font-size);
+}
+
+.reveal div.jp-OutputArea-output > pre {
+  margin: 0;
+  width: 90%;
+  font-size: var(--jp-code-font-size);
+  box-shadow: none;
 }
 
 /* Reveal navigation controls */
@@ -14076,20 +14049,53 @@ div.jp-OutputPrompt {
 
 /* Scrollbars */
 
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-::-webkit-scrollbar *
-{
-  background:transparent;
+::-webkit-scrollbar * {
+  background: transparent;
 }
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
   background: #727272 !important;
 }
 </style>
+
+<!-- Load mathjax -->
+    <script src="file:///usr/share/javascript/mathjax/MathJax.js?config=TeX-AMS_CHTML-full,Safe"> </script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    init_mathjax = function() {
+        if (window.MathJax) {
+        // MathJax loaded
+            MathJax.Hub.Config({
+                TeX: {
+                    equationNumbers: {
+                    autoNumber: "AMS",
+                    useLabelIds: true
+                    }
+                },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                CommonHTML: {
+                    linebreaks: {
+                    automatic: true
+                    }
+                }
+            });
+
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    }
+    init_mathjax();
+    </script>
+    <!-- End of mathjax configuration --><!-- Reveal Theme -->
+<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/theme/solarized.css" id="theme">
 
 </head>
 
@@ -14097,12 +14103,22 @@ div.jp-OutputPrompt {
 
 <div class="reveal">
 <div class="slides"><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Distributed-Database">Distributed Database<a class="anchor-link" href="#Distributed-Database">&#182;</a></h1><h2 id="Feng-Li">Feng Li<a class="anchor-link" href="#Feng-Li">&#182;</a></h2><h3 id="Central-University-of-Finance-and-Economics">Central University of Finance and Economics<a class="anchor-link" href="#Central-University-of-Finance-and-Economics">&#182;</a></h3><h3 id="feng.li@cufe.edu.cn"><a href="feng.li@cufe.edu.cn">feng.li@cufe.edu.cn</a><a class="anchor-link" href="#feng.li@cufe.edu.cn">&#182;</a></h3><h3 id="Course-home-page:-https://feng.li/distcomp">Course home page: <a href="https://feng.li/distcomp">https://feng.li/distcomp</a><a class="anchor-link" href="#Course-home-page:-https://feng.li/distcomp">&#182;</a></h3>
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Why-Hive?">Why Hive?<a class="anchor-link" href="#Why-Hive?">&#182;</a></h2><ul>
 <li><p>Many of those low-level details are actually quite repetitive from one job to the next, from low-level chores like wiring together Mappers and Reducers to certain data manipulation constructs, like filtering for just the data you want and performing SQL-like joins on data sets.</p>
@@ -14112,14 +14128,26 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><img src="./figures/hive-modules.png" alt="Hive-Modules"></p>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="How-does-Hive-work?">How does Hive work?<a class="anchor-link" href="#How-does-Hive-work?">&#182;</a></h2><ul>
 <li><p>When MapReduce jobs are required, Hive doesn't generate Java MapReduce programs.</p>
@@ -14131,8 +14159,14 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Hive-Batch-(old-API)">Hive Batch (old API)<a class="anchor-link" href="#Hive-Batch-(old-API)">&#182;</a></h3><ul>
 <li><p>Run hive commands from the termial</p>
@@ -14144,10 +14178,16 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Hive-Interactive-(old-API)">Hive Interactive (old API)<a class="anchor-link" href="#Hive-Interactive-(old-API)">&#182;</a></h2><ul>
+<h3 id="Hive-Interactive-(old-API)">Hive Interactive (old API)<a class="anchor-link" href="#Hive-Interactive-(old-API)">&#182;</a></h3><ul>
 <li><p>Start Hive from a Terminal</p>
 <p>$ hive</p>
 </li>
@@ -14160,19 +14200,29 @@ div.jp-OutputPrompt {
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Hive-(via-Jupyter-HiveQL)">Hive (via Jupyter HiveQL)<a class="anchor-link" href="#Hive-(via-Jupyter-HiveQL)">&#182;</a></h2><p>If you want to run Hive within Jupyter with HiveQL，you have to connect to the Hive Server</p>
+<h2 id="Hive-(old-API-via-Jupyter-HiveQL-kernel)">Hive (old API via Jupyter HiveQL kernel)<a class="anchor-link" href="#Hive-(old-API-via-Jupyter-HiveQL-kernel)">&#182;</a></h2><p>If you want to run Hive within Jupyter with HiveQL，you have to connect to the Hive Server</p>
 
+</div>
+</div>
 </div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nv">$$</span> <span class="nv">url</span><span class="o">=</span>hive://localhost
+<div class=" highlight hl-ipython3"><pre><span></span><span class="err">$$</span> <span class="n">url</span><span class="o">=</span><span class="n">hive</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span>
 </pre></div>
 
      </div>
@@ -14181,6 +14231,8 @@ div.jp-OutputPrompt {
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14202,16 +14254,14 @@ Connection established to database!
 
 </div>
 
-</div></div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Then you are in Hive Shell. You chould try HDFS commands as</p>
-
-</div>
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Apache-Beeline-client-with-Apache-HiveServer2">Apache Beeline client with Apache HiveServer2<a class="anchor-link" href="#Apache-Beeline-client-with-Apache-HiveServer2">&#182;</a></h2><ul>
+<h2 id="Apache-Beeline-client-with-Apache-HiveServer2-(new-API)">Apache Beeline client with Apache HiveServer2 (new API)<a class="anchor-link" href="#Apache-Beeline-client-with-Apache-HiveServer2-(new-API)">&#182;</a></h2><ul>
 <li>Beeline is a Hive client for runing Hive query and it also works with HiveQL file.</li>
 </ul>
 <ul>
@@ -14221,13 +14271,17 @@ Connection established to database!
 <pre><code>    beeline -u jdbc:hive2://$HIVESERVER2_HOST:$HIVESERVER2_PORT</code></pre>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>dfs -ls /<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfs</span> <span class="o">-</span><span class="n">ls</span> <span class="o">/</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14236,6 +14290,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14299,25 +14355,39 @@ Connection established to database!
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Hive-with-Database">Hive with Database<a class="anchor-link" href="#Hive-with-Database">&#182;</a></h3>
 </div>
+</div>
+</div>
 </div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Show Databases</li>
 </ul>
 
 </div>
+</div>
+</div>
 </div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>SHOW DATABASES<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14326,6 +14396,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14366,11 +14438,13 @@ Connection established to database!
 
 </div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>SHOW DATABASES Like <span class="s1">&#39;d*&#39;</span><span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOW</span> <span class="n">DATABASES</span> <span class="n">Like</span> <span class="s1">'d*'</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14379,6 +14453,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14414,20 +14490,28 @@ Connection established to database!
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Create a Database</li>
 </ul>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>CREATE DATABASE IF NOT EXISTS mydb<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CREATE</span> <span class="n">DATABASE</span> <span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="n">mydb</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14436,6 +14520,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14457,11 +14543,13 @@ Connection established to database!
 
 </div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>CREATE DATABASE IF NOT EXISTS financials LOCATION <span class="s1">&#39;/user/lifeng/hive&#39;</span><span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CREATE</span> <span class="n">DATABASE</span> <span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="n">financials</span> <span class="n">LOCATION</span> <span class="s1">'/user/lifeng/hive'</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14470,6 +14558,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14491,11 +14581,13 @@ Connection established to database!
 
 </div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>SHOW DATABASES<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14504,6 +14596,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14547,20 +14641,28 @@ Connection established to database!
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Drop a database</li>
 </ul>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>DROP DATABASE IF EXISTS financials<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DROP</span> <span class="n">DATABASE</span> <span class="n">IF</span> <span class="n">EXISTS</span> <span class="n">financials</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14570,11 +14672,13 @@ Connection established to database!
 
 </div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>SHOW DATABASES<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14583,6 +14687,8 @@ Connection established to database!
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14622,20 +14728,28 @@ Connection established to database!
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Use some database</li>
 </ul>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>USE mydb<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">USE</span> <span class="n">mydb</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14644,32 +14758,40 @@ Connection established to database!
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Create a table within the database</li>
 </ul>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>CREATE TABLE IF NOT EXISTS mydb.employees <span class="o">(</span>
-    name
-        STRING COMMENT <span class="s1">&#39;Employee name&#39;</span>,
-    salary
-        FLOAT COMMENT <span class="s1">&#39;Employee salary&#39;</span>,
-    subordinates ARRAY&lt;STRING&gt; COMMENT <span class="s1">&#39;Names of subordinates&#39;</span>,
-    deductions MAP&lt;STRING, FLOAT&gt;
-        COMMENT <span class="s1">&#39;Keys are deductions names, values are percentages&#39;</span>,
-    address
-        STRUCT&lt;street:STRING, city:STRING, state:STRING, zip:INT&gt;
-        COMMENT <span class="s1">&#39;Home address&#39;</span><span class="o">)</span>
-COMMENT <span class="s1">&#39;Description of the table&#39;</span>
-TBLPROPERTIES <span class="o">(</span><span class="s1">&#39;creator&#39;</span><span class="o">=</span><span class="s1">&#39;me&#39;</span>, <span class="s1">&#39;created_at&#39;</span><span class="o">=</span><span class="s1">&#39;2012-01-02 10:00:00&#39;</span><span class="o">)</span><span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="n">mydb</span><span class="o">.</span><span class="n">employees</span> <span class="p">(</span>
+    <span class="n">name</span>
+        <span class="n">STRING</span> <span class="n">COMMENT</span> <span class="s1">'Employee name'</span><span class="p">,</span>
+    <span class="n">salary</span>
+        <span class="n">FLOAT</span> <span class="n">COMMENT</span> <span class="s1">'Employee salary'</span><span class="p">,</span>
+    <span class="n">subordinates</span> <span class="n">ARRAY</span><span class="o">&lt;</span><span class="n">STRING</span><span class="o">&gt;</span> <span class="n">COMMENT</span> <span class="s1">'Names of subordinates'</span><span class="p">,</span>
+    <span class="n">deductions</span> <span class="n">MAP</span><span class="o">&lt;</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FLOAT</span><span class="o">&gt;</span>
+        <span class="n">COMMENT</span> <span class="s1">'Keys are deductions names, values are percentages'</span><span class="p">,</span>
+    <span class="n">address</span>
+        <span class="n">STRUCT</span><span class="o">&lt;</span><span class="n">street</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span> <span class="n">city</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span><span class="n">STRING</span><span class="p">,</span> <span class="nb">zip</span><span class="p">:</span><span class="n">INT</span><span class="o">&gt;</span>
+        <span class="n">COMMENT</span> <span class="s1">'Home address'</span><span class="p">)</span>
+<span class="n">COMMENT</span> <span class="s1">'Description of the table'</span>
+<span class="n">TBLPROPERTIES</span> <span class="p">(</span><span class="s1">'creator'</span><span class="o">=</span><span class="s1">'me'</span><span class="p">,</span> <span class="s1">'created_at'</span><span class="o">=</span><span class="s1">'2012-01-02 10:00:00'</span><span class="p">);</span>
 </pre></div>
 
      </div>
@@ -14678,6 +14800,8 @@ TBLPROPERTIES <span class="o">(</span><span class="s1">&#39;creator&#39;</span><
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14699,11 +14823,13 @@ TBLPROPERTIES <span class="o">(</span><span class="s1">&#39;creator&#39;</span><
 
 </div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>SHOW TABLES<span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOW</span> <span class="n">TABLES</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14712,6 +14838,8 @@ TBLPROPERTIES <span class="o">(</span><span class="s1">&#39;creator&#39;</span><
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14747,7 +14875,11 @@ TBLPROPERTIES <span class="o">(</span><span class="s1">&#39;creator&#39;</span><
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Create an external table</li>
@@ -14755,23 +14887,27 @@ TBLPROPERTIES <span class="o">(</span><span class="s1">&#39;creator&#39;</span><
 <p>Assume we have a data file <code>stocks.txt</code> located in HDFS at <code>/user/lifeng/data</code>, we could connect it with Hive as an external table.</p>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>create external table <span class="k">if</span> not exists stocks <span class="o">(</span>
-    symbol string, 
-    ymd string, 
-    price_open float, 
-    price_high float, 
-    price_low float, 
-    price_close float, 
-    volume int, 
-    price_adj_close float <span class="o">)</span>
-row format delimited fields terminated by <span class="s1">&#39;,&#39;</span> 
-location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">create</span> <span class="n">external</span> <span class="n">table</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span> <span class="n">stocks</span> <span class="p">(</span>
+    <span class="n">symbol</span> <span class="n">string</span><span class="p">,</span> 
+    <span class="n">ymd</span> <span class="n">string</span><span class="p">,</span> 
+    <span class="n">price_open</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">price_high</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">price_low</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">price_close</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">volume</span> <span class="nb">int</span><span class="p">,</span> 
+    <span class="n">price_adj_close</span> <span class="nb">float</span> <span class="p">)</span>
+<span class="n">row</span> <span class="nb">format</span> <span class="n">delimited</span> <span class="n">fields</span> <span class="n">terminated</span> <span class="n">by</span> <span class="s1">','</span> 
+<span class="n">location</span> <span class="s1">'/user/lifeng/data'</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14780,6 +14916,8 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14800,7 +14938,11 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>If you have an external file with a header/footer, you could exclude it with</p>
 
@@ -14810,21 +14952,31 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 <p>when you create the table.</p>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
 <li>Basic Statistics with Hive</li>
 </ul>
 
 </div>
+</div>
+</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>SELECT avg<span class="o">(</span>price_close<span class="o">)</span> FROM stocks WHERE <span class="nv">symbol</span> <span class="o">=</span> <span class="s1">&#39;AAPL&#39;</span><span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SELECT</span> <span class="n">avg</span><span class="p">(</span><span class="n">price_close</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">stocks</span> <span class="n">WHERE</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'AAPL'</span><span class="p">;</span>
 </pre></div>
 
      </div>
@@ -14833,6 +14985,8 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 </div>
 
 <div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
@@ -14868,12 +15022,22 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 </div>
 
 </div></div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Alternatives-to-Hive">Alternatives to Hive<a class="anchor-link" href="#Alternatives-to-Hive">&#182;</a></h2>
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Pig">Pig<a class="anchor-link" href="#Pig">&#182;</a></h2><ul>
 <li><p>Suppose you have one or more sources of input data and you need to perform a complex set of transformations to generate one or more collections of output data.</p>
@@ -14887,8 +15051,14 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 </ul>
 
 </div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="HBase">HBase<a class="anchor-link" href="#HBase">&#182;</a></h2><ul>
 <li><p>HBase is inspired by Google’s Big Table.</p>
@@ -14906,33 +15076,41 @@ location <span class="s1">&#39;/user/lifeng/data&#39;</span><span class="p">;</s
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>
-</pre></div>
-
-     </div>
 </div>
 </div>
-</div>
-
 </div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Lab">Lab<a class="anchor-link" href="#Lab">&#182;</a></h2><ul>
-<li><p>Create an external table with Hive for the data <code>airdelay_small.csv</code></p>
+<li><p>Create an external table with Hive for the data <code>airdelay_small.csv</code> or <code>used_cars_data_small.csv</code></p>
 </li>
 <li><p>Use the <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual">Hive internal functions</a> to do basic statistic as we had with Hadoop.</p>
 </li>
-<li><p>External Reading</p>
-<p>Capriolo, Edward, Dean Wampler, and Jason Rutherglen. Programming Hive: Data warehouse and query language for Hadoop. ” O’Reilly Media, Inc.”, 2012.</p>
+</ul>
+
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="External-Reading">External Reading<a class="anchor-link" href="#External-Reading">&#182;</a></h2><ul>
+<li><p><a href="https://cwiki.apache.org/confluence/display/Hive//Home#Home-UserDocumentation">Hive User Documentation</a></p>
+</li>
+<li><p>Capriolo, Edward, Dean Wampler, and Jason Rutherglen. Programming Hive: Data warehouse and query language for Hadoop. ” O’Reilly Media, Inc.”, 2012.</p>
 </li>
 </ul>
 
+</div>
+</div>
 </div>
 </div></section></section>
 </div>
@@ -14964,6 +15142,7 @@ require(
             progress: true,
             history: true,
             transition: "fade",
+            slideNumber: "",
             plugins: [RevealNotes]
         });
 
