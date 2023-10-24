@@ -14744,7 +14744,7 @@ div.jp-OutputPrompt {
 <pre><code>ssh -p 26506 teacher01@hz-t3.matpool.com
 
 </code></pre>
-<p>where <code>26506</code> is your remote server's SSH port,  <code>teacher01</code> is your remote server's username, <code>hz-t3.matpool.com</code> is your remote server's address.</p>
+<p>where <code>26506</code> is your remote server's SSH port (could omitted if <code>-p 22</code>),  <code>teacher01</code> is your remote server's username, <code>hz-t3.matpool.com</code> is your remote server's address.</p>
 </li>
 </ul>
 
@@ -14760,7 +14760,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Run-a-remote-Jupyter-Notebook-using-the-SSH-tunnel">Run a remote Jupyter Notebook using the SSH tunnel<a class="anchor-link" href="#Run-a-remote-Jupyter-Notebook-using-the-SSH-tunnel">&#182;</a></h2><ul>
 <li><p>Login to a remote server</p>
-<pre><code> ssh  -p 28596 teacher01@hz-t3.matpool.com
+<pre><code> ssh -p 28596 teacher01@hz-t3.matpool.com
 
 </code></pre>
 </li>
@@ -14770,11 +14770,11 @@ div.jp-OutputPrompt {
 </code></pre>
 <p>Also copy the string <code>http://localhost:8888/?token=a373718460df0437c443eeadb7250e7793d6524f80f129cc</code> printed on the terminal.</p>
 </li>
-<li><p>Start a terminal on your local machine and run:</p>
-<pre><code>  ssh  -p 28596 -L 8888:127.0.0.1:8888 teacher01@hz-t3.matpool.com
+<li><p>Start a terminal on your <strong>local machine</strong> and run:</p>
+<pre><code>  ssh  -p 28596 -L 8888:127.0.0.1:8888 -N teacher01@hz-t3.matpool.com
 
 </code></pre>
-<p>where <code>8888:127.0.0.1:8888</code> means forwarding your remote server's <code>8888</code> prot to your local machine's port <code>8888</code>.</p>
+<p>where <code>8888:127.0.0.1:8888</code> means forwarding your remote server's <code>8888</code> port to your local machine's port <code>8888</code>, <code>-N</code> to avoid login to a shell on the remote.</p>
 </li>
 <li><p>Open your bowser and connect to the remote Jupyter Notebook server locally with the link</p>
 <p><a href="http://localhost:8888/?token=a373718460df0437c443eeadb7250e7793d6524f80f129cc">http://localhost:8888/?token=a373718460df0437c443eeadb7250e7793d6524f80f129cc</a></p>
@@ -14792,7 +14792,7 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Navigation-with-basic-Linux-shell-commands">Navigation with basic Linux shell commands<a class="anchor-link" href="#Navigation-with-basic-Linux-shell-commands">&#182;</a></h2><ul>
-<li>Once you have logged into the server, a few things you could do</li>
+<li>Once you have logged into the server, a few things you could do with shell commands</li>
 </ul>
 
 </div>
@@ -14849,7 +14849,7 @@ div.jp-OutputPrompt {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span>whoami
@@ -14872,17 +14872,8 @@ div.jp-OutputPrompt {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>fli2004l
+<pre>fli
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre></pre>
 </div>
 </div>
 
