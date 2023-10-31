@@ -14760,11 +14760,15 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Beeline-client-with-HiveServer2-(new-interactive-API)">Beeline client with HiveServer2 (new interactive API)<a class="anchor-link" href="#Beeline-client-with-HiveServer2-(new-interactive-API)">&#182;</a></h2><ul>
-<li><p>Beeline is a Hive client for runing Hive query and it also works with HiveQL file.</p>
+<li><p>Beeline is a Hive client for running Hive query and it also works with HiveQL file.</p>
 </li>
 <li><p>Beeline uses JDBC to connect to HiveServer2.</p>
-<pre><code>  beeline -u jdbc:hive2://$HIVESERVER2_HOST:$HIVESERVER2_PORT
+<pre><code>beeline -u jdbc:hive2://$HIVESERVER2_HOST:$HIVESERVER2_PORT
 
+</code></pre>
+</li>
+<li><p>For a recent hive server, the address and port could be</p>
+<pre><code>beeline -u jdbc:hive2://master:10000
 </code></pre>
 </li>
 </ul>
@@ -14781,12 +14785,12 @@ div.jp-OutputPrompt {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Beeline-client-(batch-mode)">Beeline client (batch mode)<a class="anchor-link" href="#Beeline-client-(batch-mode)">&#182;</a></h2><ul>
 <li><p>Beeline executes an query</p>
-<pre><code>  beeline -u jdbc:hive2://$HIVESERVER2_HOST:$HIVESERVER2_PORT -e 'dfs -ls /;'
+<pre><code>  beeline -u jdbc:hive2://master:10000 -e 'dfs -ls /;'
 
 </code></pre>
 </li>
 <li><p>Beeline executes a script.</p>
-<pre><code>  beeline -u jdbc:hive2://$HIVESERVER2_HOST:$HIVESERVER2_PORT -f test.hql
+<pre><code>  beeline -u jdbc:hive2://master:10000 -f test.hql
 
 </code></pre>
 </li>
